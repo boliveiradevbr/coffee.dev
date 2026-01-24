@@ -82,6 +82,10 @@ h2 i {
     gap: .5rem;
 }
 
+.logo a span > span {
+    color: var(--latte);
+}
+
 .logo img {
     max-width: 2rem;
     margin-bottom: 12px;

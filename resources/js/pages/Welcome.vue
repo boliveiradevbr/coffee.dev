@@ -159,5 +159,5 @@ const year = new Date().getFullYear();
         </div>
     </section>
 
-    <footer>coffee.dev &copy;{{ year}} — Code. Coffee. Creativity.</footer>
+    <footer>coffee.dev &copy; {{ year}} · Code. Coffee. Creativity.</footer>
 </template>
