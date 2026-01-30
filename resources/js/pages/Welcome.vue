@@ -2,13 +2,15 @@
 import { Head } from '@inertiajs/vue3';
 import { onMounted } from 'vue';
 
+type Posts = {
+    id: number,
+    title: string,
+    date: string,
+    excerpt: string
+}
+
 defineProps({
-    posts: Array<{
-        id: number,
-        title: string,
-        date: string,
-        excerpt: string
-    }>,
+    posts: Array<Posts>,
 });
 
 onMounted(() => {
@@ -103,15 +105,15 @@ const year = new Date().getFullYear();
                 </div>
                 <div class="step fade-up">
                     <span>02</span>
-                    <p>Planejamento técnico e UX</p>
+                    <p>Planejamento técnico e criação da UI / UX</p>
                 </div>
                 <div class="step fade-up">
                     <span>03</span>
-                    <p>Desenvolvimento iterativo</p>
+                    <p>Desenvolvimento iterativo com acompanhamento</p>
                 </div>
                 <div class="step fade-up">
                     <span>04</span>
-                    <p>Entrega, métricas e evolução contínua</p>
+                    <p>Entrega, observabilidade e evolução contínua</p>
                 </div>
             </div>
         </div>
@@ -123,10 +125,10 @@ const year = new Date().getFullYear();
             <p style="max-width: 640px; opacity: 0.8; margin-bottom: 48px">
                 Conteúdo sobre programação, mercado, carreira dev, SaaS e bastidores de quem vive código e café todos os dias.
             </p>
-            <div class="grid" id="blog-posts" v-if="posts?.length > 0">
+            <div class="grid" id="blog-posts" v-if="posts?.length">
                 <div class="card fade-up" v-for="post in posts" :key="post.id">
                     <div class="post-cover">CAPA</div>
-                    <div class="post-meta">{{ post.date }}}</div>
+                    <div class="post-meta">{{ post.date }}</div>
                     <h3>{{ post.title }}</h3>
                     <p style="opacity:.8;">{{ post.excerpt }}</p>
                     <a href="#" class="read-more">Continue lendo →</a>
@@ -147,8 +149,8 @@ const year = new Date().getFullYear();
             <form>
                 <input type="text" placeholder="Seu nome" required />
                 <input type="email" placeholder="Seu e-mail" required />
-                <textarea rows="8" placeholder="Conte um pouco sobre o projeto"></textarea>
-                <button class="btn btn-primary" type="submit"><i class="ph-paper-plane"></i> Enviar mensagem</button>
+                <textarea rows="8" placeholder="Conte um pouco sobre o projeto" required></textarea>
+                <button class="btn btn-primary block" type="submit"><i class="ph-paper-plane"></i> Enviar mensagem</button>
             </form>
             <div class="social-links">
                 <a href="#" aria-label="GitHub"><i class="ph-github-logo"></i></a>
