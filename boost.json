@@ -1,12 +1,18 @@
 {
     "agents": [
         "cursor",
-        "phpstorm"
+        "claude_code",
+        "opencode",
+        "junie"
     ],
-    "editors": [
-        "cursor",
-        "phpstorm",
-        "vscode"
-    ],
-    "guidelines": []
+    "guidelines": true,
+    "herd_mcp": false,
+    "mcp": true,
+    "sail": false,
+    "skills": [
+        "wayfinder-development",
+        "pest-testing",
+        "inertia-vue-development",
+        "tailwindcss-development"
+    ]
 }
