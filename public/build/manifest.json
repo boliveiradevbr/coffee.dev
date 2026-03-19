@@ -1,6 +1,6 @@
 {
   "resources/js/app.ts": {
-    "file": "assets/app-BFXosYON.js",
+    "file": "assets/app-DFSp5uW-.js",
     "name": "app",
     "src": "resources/js/app.ts",
     "isEntry": true,
@@ -8,11 +8,11 @@
       "resources/js/pages/Welcome.vue"
     ],
     "css": [
-      "assets/app-D-8uNPgs.css"
+      "assets/app-BQFzZJtC.css"
     ]
   },
   "resources/js/pages/Welcome.vue": {
-    "file": "assets/Welcome-Pq9uQ9da.js",
+    "file": "assets/Welcome-CYEVtwel.js",
     "name": "Welcome",
     "src": "resources/js/pages/Welcome.vue",
     "isDynamicEntry": true,
