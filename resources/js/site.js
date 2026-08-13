@@ -1,8 +1,5 @@
 /**
- * Entry point for the Blade-rendered marketing site.
- *
- * Named site.js rather than app.js because resources/js/app.ts is already the
- * Inertia entry point and the two must stay distinct in the Vite manifest.
+ * Entry point for the marketing site: ambient shader, mobile menu, scroll reveal.
  */
 
 import { initShaderBackground } from './shader.js';
