@@ -1,8 +1,595 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/forms';
 
+@source '../views';
+@source '../js';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
-@theme inline {
-    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+/* The palette is dark by default; class="dark" on <html> keeps dark: utilities
+   class-driven rather than following prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — "Espresso Modernist" (see .new/DESIGN.md)
+   Ported from the prototype's assets/tailwind-config.js.
+   --------------------------------------------------------------------------- */
+@theme {
+    /* Brand */
+    --color-amber-glow: #e6b325;
+    --color-crema-white: #fdf9f3;
+    --color-espresso-black: #120d0c;
+    --color-roast-brown: #2a221e;
+
+    /* Surfaces */
+    --color-background: #181210;
+    --color-on-background: #ede0dc;
+    --color-surface: #181210;
+    --color-surface-bright: #3f3835;
+    --color-surface-container: #251e1c;
+    --color-surface-container-high: #2f2826;
+    --color-surface-container-highest: #3b3331;
+    --color-surface-container-low: #201a18;
+    --color-surface-container-lowest: #130d0b;
+    --color-surface-dim: #181210;
+    --color-surface-tint: #ebc075;
+    --color-surface-variant: #3b3331;
+    --color-on-surface: #ede0dc;
+    --color-on-surface-variant: #d1c5b4;
+    --color-inverse-on-surface: #362f2c;
+    --color-inverse-surface: #ede0dc;
+    --color-outline: #9a8f80;
+    --color-outline-variant: #4e4639;
+
+    /* Primary — note primary-container is the working brand gold */
+    --color-primary: #ffd489;
+    --color-primary-container: #e2b86e;
+    --color-primary-fixed: #ffdea8;
+    --color-primary-fixed-dim: #ebc075;
+    --color-inverse-primary: #795918;
+    --color-on-primary: #422d00;
+    --color-on-primary-container: #654805;
+    --color-on-primary-fixed: #271900;
+    --color-on-primary-fixed-variant: #5e4200;
+
+    /* Secondary */
+    --color-secondary: #e9c349;
+    --color-secondary-container: #af8d11;
+    --color-secondary-fixed: #ffe088;
+    --color-secondary-fixed-dim: #e9c349;
+    --color-on-secondary: #3c2f00;
+    --color-on-secondary-container: #342800;
+    --color-on-secondary-fixed: #241a00;
+    --color-on-secondary-fixed-variant: #574500;
+
+    /* Tertiary */
+    --color-tertiary: #e6d7d0;
+    --color-tertiary-container: #c9bbb5;
+    --color-tertiary-fixed: #efdfd9;
+    --color-tertiary-fixed-dim: #d2c4bd;
+    --color-on-tertiary: #372f2a;
+    --color-on-tertiary-container: #554b46;
+    --color-on-tertiary-fixed: #211a16;
+    --color-on-tertiary-fixed-variant: #4e4540;
+
+    /* Error */
+    --color-error: #ffb4ab;
+    --color-error-container: #93000a;
+    --color-on-error: #690005;
+    --color-on-error-container: #ffdad6;
+
+    /* Font families */
+    --font-display-lg: Inter, sans-serif;
+    --font-display-lg-mobile: Inter, sans-serif;
+    --font-headline-xl: Inter, sans-serif;
+    --font-headline-lg: Inter, sans-serif;
+    --font-body-lg: Inter, sans-serif;
+    --font-body-md: Inter, sans-serif;
+    --font-code-sm: 'JetBrains Mono', monospace;
+    --font-label-caps: 'JetBrains Mono', monospace;
+
+    /* Type scale */
+    --text-display-lg: 64px;
+    --text-display-lg--line-height: 72px;
+    --text-display-lg--letter-spacing: -0.02em;
+    --text-display-lg--font-weight: 700;
+
+    --text-display-lg-mobile: 40px;
+    --text-display-lg-mobile--line-height: 48px;
+    --text-display-lg-mobile--letter-spacing: -0.01em;
+    --text-display-lg-mobile--font-weight: 700;
+
+    --text-headline-xl: 48px;
+    --text-headline-xl--line-height: 56px;
+    --text-headline-xl--letter-spacing: -0.01em;
+    --text-headline-xl--font-weight: 600;
+
+    --text-headline-lg: 32px;
+    --text-headline-lg--line-height: 40px;
+    --text-headline-lg--font-weight: 600;
+
+    --text-body-lg: 18px;
+    --text-body-lg--line-height: 28px;
+    --text-body-lg--font-weight: 400;
+
+    --text-body-md: 16px;
+    --text-body-md--line-height: 24px;
+    --text-body-md--font-weight: 400;
+
+    --text-code-sm: 14px;
+    --text-code-sm--line-height: 20px;
+    --text-code-sm--font-weight: 500;
+
+    /* 14px, not the 12px of DESIGN.md's front matter: the prototype forced 14px
+       through an !important override and that is the approved rendering. */
+    --text-label-caps: 14px;
+    --text-label-caps--line-height: 16px;
+    --text-label-caps--letter-spacing: 0.1em;
+    --text-label-caps--font-weight: 700;
+
+    /* Named spacing — px-margin-mobile, py-section-gap, … */
+    --spacing-unit: 8px;
+    --spacing-gutter: 32px;
+    --spacing-margin-mobile: 20px;
+    --spacing-margin-desktop: 64px;
+    --spacing-section-gap: 120px;
+
+    /* max-w-container-max reads the --container-* namespace */
+    --container-container-max: 1280px;
+
+    /* Radii. 4px for buttons and inputs, 8px for elevated panels, true pill for
+       chips and circular badges. */
+    --radius-sm: 0.125rem;
+    --radius-lg: 0.25rem;
+    --radius-xl: 0.5rem;
+    --radius-full: 9999px;
+}
+
+/* ---------------------------------------------------------------------------
+   Editorial values that are deliberately not design tokens (see DESIGN.md,
+   "Implementation Notes"). Named here so they stop being magic numbers.
+   --------------------------------------------------------------------------- */
+:root {
+    --glass-tint: rgba(26, 20, 18, 0.7);
+    --btn-primary-label: #1a1412;
+    --editorial-body: #b8ada8;
+    --cover-loading: #352b25;
+    --hairline: rgba(255, 255, 255, 0.1);
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll reveal
+   --------------------------------------------------------------------------- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Elevation & depth
+   --------------------------------------------------------------------------- */
+.glass-panel {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--glass-tint);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.elevated-card {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--color-roast-brown);
+    box-shadow: 0 20px 40px -10px rgba(18, 13, 12, 0.5);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.elevated-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 50px -15px rgba(18, 13, 12, 0.7);
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------------- */
+.btn-primary {
+    background-color: var(--color-primary-container);
+    color: var(--btn-primary-label);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.02);
+}
+
+/* ---------------------------------------------------------------------------
+   Contact form fields. The !important flags override @tailwindcss/forms' own
+   base layer, which is why they are kept.
+   --------------------------------------------------------------------------- */
+.contact-field {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border: none !important;
+    border-bottom: 1px solid var(--color-outline-variant) !important;
+    background-color: var(--color-background) !important;
+    color: var(--color-on-surface) !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-field:focus {
+    border-bottom-color: var(--color-primary-container) !important;
+    outline: none !important;
+    box-shadow: 0 1px 0 0 var(--color-primary-container) !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Navigation. 1099px is the navigation breakpoint, mirrored in site.js.
+   --------------------------------------------------------------------------- */
+.mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+        max-height 0.3s ease,
+        opacity 0.2s ease;
+}
+
+.mobile-menu.is-open {
+    max-height: 24rem;
+    opacity: 1;
+}
+
+@media (min-width: 1099px) {
+    .desktop-nav {
+        display: flex !important;
+    }
+
+    .desktop-cta {
+        display: inline-flex !important;
+    }
+
+    .mobile-nav-toggle,
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   Blog & article shell. These opt out of max-w-container-max on purpose.
+   --------------------------------------------------------------------------- */
+.blog-page,
+.article-page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 150px 0 110px;
+    font-family: var(--font-body-md);
+}
+
+.article-page {
+    max-width: 1180px;
+}
+
+.article-page.text-center h1 {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.blog-eyebrow,
+.blog-card time,
+.article-page time {
+    color: var(--color-primary-container);
+    font-family: var(--font-label-caps);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.blog-card time {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.blog-page h1,
+.article-page h1 {
+    max-width: 850px;
+    margin: 18px 0;
+    color: var(--color-crema-white);
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.blog-intro,
+.article-headline {
+    max-width: 680px;
+    margin: 0;
+    color: var(--editorial-body);
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.blog-divider {
+    height: 1px;
+    margin: 70px 0 36px;
+    background: var(--hairline);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* ---------------------------------------------------------------------------
+   Post card — shared verbatim by /blog and the home teaser grid
+   --------------------------------------------------------------------------- */
+.blog-card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    background: var(--color-roast-brown);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(226, 184, 110, 0.5);
+}
+
+.blog-card__image {
+    width: 100%;
+    height: 210px;
+    background: var(--cover-loading);
+    object-fit: cover;
+}
+
+.blog-card__placeholder,
+.article-cover__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-outline);
+    font-family: var(--font-label-caps);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.blog-card__content {
+    display: flex;
+    min-height: 230px;
+    flex: 1;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.blog-card h2 {
+    margin: 14px 0 12px;
+    color: var(--color-crema-white);
+    font-family: var(--font-body-md);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+}
+
+.blog-card p {
+    margin: 0 0 22px;
+    color: var(--editorial-body);
+    font-family: var(--font-body-md);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.blog-read-more,
+.article-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--color-primary-container);
+    font-family: var(--font-label-caps);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.blog-read-more {
+    margin-top: auto;
+}
+
+/* Empty state, spanning the full grid */
+.blog-status {
+    grid-column: 1 / -1;
+    padding: 50px;
+    color: var(--editorial-body);
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Article
+   --------------------------------------------------------------------------- */
+.article-back {
+    margin-bottom: 52px;
+}
+
+.article-content-wrap {
+    margin: 0 auto;
+    text-align: left;
+}
+
+.article-page h1 {
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.02;
+}
+
+.article-page h1,
+.article-body,
+.article-callout p {
+    font-family: var(--font-body-md);
+}
+
+.article-headline {
+    margin-bottom: 36px;
+    font-size: 21px;
+    line-height: 1.55;
+}
+
+.article-cover {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    border-radius: 14px;
+    background: var(--color-roast-brown);
+    object-fit: cover;
+}
+
+.article-cover__placeholder {
+    min-height: 420px;
+}
+
+.article-body {
+    margin: 44px auto;
+    color: var(--color-on-surface);
+    font-size: 18px;
+    line-height: 1.78;
+}
+
+.article-body p {
+    margin: 0 0 25px;
+}
+
+.article-callout {
+    margin-top: 44px;
+    padding: 28px;
+    border: 1px solid rgba(226, 184, 110, 0.3);
+    border-radius: 12px;
+    background: var(--color-roast-brown);
+}
+
+.article-callout p {
+    margin: 0 0 16px;
+    color: var(--color-crema-white);
+    font-size: 17px;
+}
+
+.article-navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 48px auto 0;
+}
+
+.article-navigation-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: var(--color-roast-brown);
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.article-navigation-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(226, 184, 110, 0.55);
+}
+
+.article-navigation-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-primary-container);
+    font: 700 11px var(--font-label-caps);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.article-navigation-title {
+    color: var(--color-crema-white);
+    font: 600 17px var(--font-body-md);
+}
+
+.article-navigation-thumb {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    border-radius: 8px;
+    background: var(--color-surface-container-high);
+    object-fit: cover;
+}
+
+.article-navigation-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-outline);
+    font: 700 9px var(--font-label-caps);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+   Editorial responsive steps. These were unreachable in the prototype because
+   the whole block was nested inside @media (min-width: 1099px).
+   --------------------------------------------------------------------------- */
+@media (max-width: 1098px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .blog-page,
+    .article-page {
+        width: min(100% - 32px, 1180px);
+        padding-top: 130px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .article-navigation {
+        grid-template-columns: 1fr;
+    }
+
+    .article-back {
+        margin-bottom: 38px;
+    }
+
+    .article-headline {
+        font-size: 18px;
+    }
+
+    .article-body {
+        font-size: 17px;
+    }
 }

@@ -1,4 +1,13 @@
 {
+  "resources/css/app.css": {
+    "file": "assets/app-BW41TkFb.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
   "resources/js/app.ts": {
     "file": "assets/app-DFSp5uW-.js",
     "name": "app",
@@ -19,5 +28,11 @@
     "imports": [
       "resources/js/app.ts"
     ]
+  },
+  "resources/js/site.js": {
+    "file": "assets/site-BqVCmIkm.js",
+    "name": "site",
+    "src": "resources/js/site.js",
+    "isEntry": true
   }
 }
