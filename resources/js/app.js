@@ -1,5 +1,5 @@
 /**
- * Entry point for the marketing site: ambient shader, mobile menu, scroll reveal.
+ * Entry point for the site: ambient shader, mobile menu, scroll reveal.
  */
 
 import { initShaderBackground } from './shader.js';

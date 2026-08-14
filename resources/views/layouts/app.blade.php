@@ -18,7 +18,7 @@
             rel="stylesheet"
         />
         @stack('head')
-        @vite(['resources/css/app.css', 'resources/js/site.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body
         class="bg-background text-on-surface font-body-md antialiased overflow-x-hidden relative selection:bg-primary-container selection:text-espresso-black"

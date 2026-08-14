@@ -1,36 +1,33 @@
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
+import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
-import vue from 'eslint-plugin-vue';
 
-export default defineConfigWithVueTs(
-    vue.configs['flat/essential'],
-    vueTsConfigs.recommended,
+export default [
     {
-        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js', 'vite.config.ts', 'resources/js/components/ui/*'],
+        ignores: ['vendor', 'node_modules', 'public', 'vite.config.js'],
     },
+    js.configs.recommended,
     {
+        files: ['resources/js/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'module',
+            globals: {
+                console: 'readonly',
+                document: 'readonly',
+                window: 'readonly',
+                requestAnimationFrame: 'readonly',
+                cancelAnimationFrame: 'readonly',
+                HTMLCanvasElement: 'readonly',
+                IntersectionObserver: 'readonly',
+                ResizeObserver: 'readonly',
+                Float32Array: 'readonly',
+            },
+        },
         plugins: {
             import: importPlugin,
         },
-        settings: {
-            'import/resolver': {
-                typescript: {
-                    alwaysTryTypes: true,
-                    project: './tsconfig.json',
-                },
-            },
-        },
         rules: {
-            'vue/multi-word-component-names': 'off',
-            '@typescript-eslint/no-explicit-any': 'off',
-            '@typescript-eslint/consistent-type-imports': [
-                'error',
-                {
-                    prefer: 'type-imports',
-                    fixStyle: 'separate-type-imports',
-                },
-            ],
             'import/order': [
                 'error',
                 {
@@ -44,4 +41,4 @@ export default defineConfigWithVueTs(
         },
     },
     prettier,
-);
+];
