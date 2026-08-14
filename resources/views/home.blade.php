@@ -62,10 +62,10 @@
             <x-service-card icon="terminal" title="Software sob medida">
                 Desenvolvimento focado em performance, escalabilidade e boas práticas.
             </x-service-card>
-            <x-service-card icon="cloud" title="SaaS &amp; Plataformas">
+            <x-service-card icon="cloud" title="SaaS & Plataformas">
                 Produtos digitais completos, do MVP à escala.
             </x-service-card>
-            <x-service-card icon="api" title="APIs &amp; Integrações">
+            <x-service-card icon="api" title="APIs & Integrações">
                 Integrações seguras e eficientes entre sistemas.
             </x-service-card>
         </div>

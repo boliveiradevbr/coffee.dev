@@ -78,6 +78,12 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "pre-install-cmd": [
+            "@php -r \"@unlink('bootstrap/cache/packages.php'); @unlink('bootstrap/cache/services.php');\""
+        ],
+        "pre-update-cmd": [
+            "@php -r \"@unlink('bootstrap/cache/packages.php'); @unlink('bootstrap/cache/services.php');\""
         ]
     },
     "extra": {
