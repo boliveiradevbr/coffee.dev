@@ -10,4 +10,4 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/v2', fn() => return view('home-v2'))->name('home-v2');
+Route::get('/v2', fn() => view('home-v2'))->name('home-v2');
