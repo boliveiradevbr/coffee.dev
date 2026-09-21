@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>coffee.dev — Software feito com código limpo e café forte.</title>
+
     <meta
         name="description"
         content="Software sob medida, plataformas SaaS e integrações robustas para empresas que levam tecnologia a sério."
     />
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -40,9 +39,6 @@
                             400: '#92400E',
                         },
                         cream: '#FEF3C7',
-                    },
-                    letterSpacing: {
-                        tighter2: '-0.055em',
                     }
                 }
             }
@@ -64,25 +60,125 @@
             color: #0B0807;
         }
 
-        .grid-bg {
-            background-image:
-                linear-gradient(rgba(120, 53, 15, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(120, 53, 15, 0.08) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
+        /* =====================================================
+           COFFEE SMOKE
+        ===================================================== */
 
-        .noise {
-            position: relative;
-        }
-
-        .noise::after {
-            content: "";
+        .smoke-background {
             position: absolute;
             inset: 0;
+            overflow: hidden;
             pointer-events: none;
-            opacity: .025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
         }
+
+        .smoke {
+            position: absolute;
+            bottom: -180px;
+            width: 420px;
+            height: 620px;
+            border-radius: 50%;
+            filter: blur(55px);
+            opacity: .12;
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(245, 158, 11, .34) 0%,
+                    rgba(120, 53, 15, .22) 32%,
+                    rgba(78, 44, 24, .10) 55%,
+                    transparent 72%
+                );
+            transform-origin: bottom center;
+            animation: smokeRise 14s ease-in-out infinite;
+        }
+
+        .smoke-1 {
+            left: 10%;
+            animation-delay: -2s;
+            animation-duration: 16s;
+        }
+
+        .smoke-2 {
+            left: 34%;
+            width: 520px;
+            height: 700px;
+            opacity: .09;
+            animation-delay: -7s;
+            animation-duration: 19s;
+        }
+
+        .smoke-3 {
+            left: 58%;
+            width: 460px;
+            height: 650px;
+            opacity: .10;
+            animation-delay: -11s;
+            animation-duration: 17s;
+        }
+
+        .smoke-4 {
+            left: 78%;
+            width: 350px;
+            height: 580px;
+            opacity: .07;
+            animation-delay: -5s;
+            animation-duration: 21s;
+        }
+
+        @keyframes smokeRise {
+            0% {
+                transform:
+                    translate3d(0, 80px, 0)
+                    scale(.75)
+                    rotate(-5deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .5;
+            }
+
+            40% {
+                transform:
+                    translate3d(45px, -100px, 0)
+                    scale(1)
+                    rotate(8deg);
+            }
+
+            65% {
+                transform:
+                    translate3d(-35px, -270px, 0)
+                    scale(1.15)
+                    rotate(-7deg);
+            }
+
+            85% {
+                opacity: .2;
+            }
+
+            100% {
+                transform:
+                    translate3d(65px, -470px, 0)
+                    scale(1.35)
+                    rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        /* Fine atmospheric haze */
+        .smoke-haze {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(
+                    ellipse 70% 65% at 50% 100%,
+                    rgba(120, 53, 15, .14),
+                    transparent 70%
+                );
+        }
+
+        /* =====================================================
+           GENERAL MICRO INTERACTIONS
+        ===================================================== */
 
         .line-hover {
             position: relative;
@@ -129,16 +225,43 @@
             transition: transform .3s ease;
         }
 
+        /* =====================================================
+           PROCESS ICONS
+        ===================================================== */
+
         .process-item {
-            transition: background-color .3s ease;
+            position: relative;
+            transition:
+                background-color .3s ease,
+                border-color .3s ease;
         }
 
         .process-item:hover {
             background: rgba(120, 53, 15, .08);
         }
 
-        .process-item:hover .process-number {
+        .process-icon {
+            transition:
+                color .3s ease,
+                transform .3s ease,
+                border-color .3s ease;
+        }
+
+        .process-item:hover .process-icon {
             color: #FEF3C7;
+            border-color: #78350F;
+            transform: translateY(-3px);
+        }
+
+        .process-arrow {
+            transition:
+                color .3s ease,
+                transform .3s ease;
+        }
+
+        .process-item:hover .process-arrow {
+            color: #FEF3C7;
+            transform: translateX(4px);
         }
 
         .article {
@@ -200,10 +323,34 @@
                 transition-duration: .01ms !important;
             }
         }
+
+        @media (max-width: 640px) {
+            .smoke {
+                filter: blur(45px);
+                opacity: .08;
+            }
+
+            .smoke-1 {
+                left: -30%;
+            }
+
+            .smoke-2 {
+                left: 20%;
+            }
+
+            .smoke-3 {
+                left: 60%;
+            }
+
+            .smoke-4 {
+                left: 90%;
+            }
+        }
     </style>
 </head>
 
-<body class="font-sans antialiased noise">
+<body class="font-sans antialiased">
+
 
 <!-- ========================================================= -->
 <!-- HEADER -->
@@ -213,6 +360,7 @@
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
 
         <a href="#" class="group flex items-center gap-3">
+
             <div class="flex h-9 w-9 items-center justify-center border border-stone-700 font-mono text-sm text-amber-100 transition group-hover:border-amber-100">
                 &lt;/
             </div>
@@ -226,9 +374,11 @@
                     software foundry
                 </div>
             </div>
+
         </a>
 
         <nav class="hidden items-center gap-8 md:flex">
+
             <a href="#servicos" class="line-hover font-mono text-[11px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100">
                 Serviços
             </a>
@@ -247,6 +397,7 @@
             >
                 Vamos conversar
             </a>
+
         </nav>
 
         <button
@@ -255,6 +406,7 @@
         >
             <span class="font-mono text-sm text-stone-300">☰</span>
         </button>
+
     </div>
 </header>
 
@@ -267,7 +419,26 @@
 
 <section class="relative overflow-hidden border-b border-stone-800">
 
-    <div class="absolute inset-0 grid-bg"></div>
+    <!-- Animated coffee smoke -->
+
+    <div class="smoke-background" aria-hidden="true">
+
+        <div class="smoke smoke-1"></div>
+        <div class="smoke smoke-2"></div>
+        <div class="smoke smoke-3"></div>
+        <div class="smoke smoke-4"></div>
+
+        <div class="smoke-haze"></div>
+
+    </div>
+
+
+    <!-- Subtle vertical light -->
+    <div
+        class="pointer-events-none absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-transparent via-stone-800/40 to-transparent"
+        aria-hidden="true"
+    ></div>
+
 
     <div class="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:py-40">
 
@@ -276,32 +447,49 @@
             <div>
 
                 <div class="mb-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.22em] text-stone-500">
+
                     <span class="coffee-cursor h-1.5 w-1.5 bg-amber-200"></span>
+
                     engenharia de software independente
+
                 </div>
 
-                <h1 class="max-w-5xl text-5xl font-extrabold leading-[.98] tracking-tighter2 text-stone-100 sm:text-7xl lg:text-[88px]">
+
+                <h1 class="max-w-5xl text-5xl font-extrabold leading-[.98] tracking-[-0.055em] text-stone-100 sm:text-7xl lg:text-[88px]">
+
                     Software feito com
-                    <span class="text-amber-100">código limpo</span>
+
+                    <span class="text-amber-100">
+                        código limpo
+                    </span>
+
                     e café forte.
+
                 </h1>
+
 
                 <div class="mt-10 grid max-w-4xl gap-8 md:grid-cols-[1fr_240px]">
 
                     <p class="max-w-2xl text-lg leading-8 text-stone-400 sm:text-xl">
+
                         Criamos produtos digitais para startups e empresas que
                         entendem que performance, experiência e arquitetura
                         sustentável não são detalhes.
+
                     </p>
 
+
                     <div class="border-l border-stone-800 pl-5 font-mono text-[10px] leading-6 text-stone-600">
+
                         <div>STACK / PHP · LARAVEL</div>
                         <div>FRONT / VUE · REACT</div>
                         <div>DATA / SQL · REDIS</div>
                         <div>INFRA / CLOUD · DOCKER</div>
+
                     </div>
 
                 </div>
+
 
                 <div class="mt-12 flex flex-col gap-3 sm:flex-row">
 
@@ -310,8 +498,12 @@
                         class="inline-flex h-12 items-center justify-center bg-amber-100 px-6 font-mono text-xs font-semibold uppercase tracking-[.12em] text-[#0B0807] transition hover:bg-amber-200"
                     >
                         Iniciar um projeto
-                        <span class="ml-4">↗</span>
+
+                        <span class="ml-4">
+                            ↗
+                        </span>
                     </a>
+
 
                     <a
                         href="#servicos"
@@ -321,13 +513,18 @@
                     </a>
 
                 </div>
+
             </div>
+
+
+            <!-- Technical terminal -->
 
             <div class="mt-16 hidden lg:block">
 
-                <div class="border border-stone-800 bg-[#0F0C0B]">
+                <div class="border border-stone-800 bg-[#0F0C0B]/80 backdrop-blur-sm">
 
                     <div class="flex items-center justify-between border-b border-stone-800 px-4 py-3">
+
                         <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">
                             /coffee.config
                         </span>
@@ -335,7 +532,9 @@
                         <span class="font-mono text-[9px] text-stone-700">
                             001
                         </span>
+
                     </div>
+
 
                     <div class="space-y-4 p-5 font-mono text-[10px] leading-5">
 
@@ -374,7 +573,9 @@
                         </div>
 
                     </div>
+
                 </div>
+
 
                 <div class="mt-4 font-mono text-[9px] leading-5 text-stone-700">
                     BUILD WITH INTENTION.<br>
@@ -385,6 +586,7 @@
 
         </div>
     </div>
+
 </section>
 
 
@@ -415,6 +617,7 @@
 
             </div>
 
+
             <div class="lg:pl-12">
 
                 <article class="service-row border-b border-stone-800 py-10 lg:py-12">
@@ -426,6 +629,7 @@
                         </div>
 
                         <div>
+
                             <div class="mb-3 font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">
                                 arquitetura · performance · escala
                             </div>
@@ -440,6 +644,7 @@
                                 capacidade para crescer sem transformar cada mudança
                                 em uma operação de risco.
                             </p>
+
                         </div>
 
                         <div class="service-arrow font-mono text-xl text-stone-600">
@@ -460,6 +665,7 @@
                         </div>
 
                         <div>
+
                             <div class="mb-3 font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">
                                 produto · MVP · crescimento
                             </div>
@@ -473,6 +679,7 @@
                                 produto, experiência e infraestrutura para que
                                 decisões técnicas acompanhem a evolução do negócio.
                             </p>
+
                         </div>
 
                         <div class="service-arrow font-mono text-xl text-stone-600">
@@ -493,6 +700,7 @@
                         </div>
 
                         <div>
+
                             <div class="mb-3 font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">
                                 APIs · segurança · automação
                             </div>
@@ -507,6 +715,7 @@
                                 observabilidade e uma preocupação constante
                                 com segurança.
                             </p>
+
                         </div>
 
                         <div class="service-arrow font-mono text-xl text-stone-600">
@@ -524,7 +733,7 @@
 
 
 <!-- ========================================================= -->
-<!-- PROCESS -->
+<!-- PROCESS — ICON GRID -->
 <!-- ========================================================= -->
 
 <section id="processo" class="border-b border-stone-800">
@@ -534,6 +743,7 @@
         <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
 
             <div>
+
                 <div class="font-mono text-[10px] uppercase tracking-[.2em] text-amber-200">
                     02 / processo
                 </div>
@@ -543,6 +753,7 @@
                     <br>
                     Mais engenharia.
                 </h2>
+
             </div>
 
             <p class="max-w-sm text-sm leading-7 text-stone-500">
@@ -553,62 +764,206 @@
         </div>
 
 
+        <!-- Icon process grid -->
+
         <div class="grid border border-stone-800 md:grid-cols-4">
 
-            <article class="process-item border-b border-stone-800 p-7 md:border-b-0 md:border-r">
-                <div class="process-number font-mono text-4xl text-stone-700 transition">
-                    01
-                </div>
-
-                <h3 class="mt-14 text-lg font-semibold text-stone-100">
-                    Entendimento
-                </h3>
-
-                <p class="mt-4 text-sm leading-6 text-stone-500">
-                    Entendemos o problema, usuários, contexto e objetivos antes de escrever código.
-                </p>
-            </article>
+            <!-- 01 -->
 
             <article class="process-item border-b border-stone-800 p-7 md:border-b-0 md:border-r">
-                <div class="process-number font-mono text-4xl text-stone-700 transition">
-                    02
+
+                <div class="flex items-center justify-between">
+
+                    <div class="process-icon flex h-12 w-12 items-center justify-center border border-stone-800 text-stone-500">
+
+                        <!-- Search / Understanding -->
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            class="h-5 w-5"
+                        >
+                            <circle cx="11" cy="11" r="6.5"/>
+                            <path d="m16 16 4 4"/>
+                            <path d="M8.5 11h5"/>
+                            <path d="M11 8.5v5"/>
+                        </svg>
+
+                    </div>
+
+                    <span class="process-arrow font-mono text-sm text-stone-700">
+                        ↗
+                    </span>
+
                 </div>
 
-                <h3 class="mt-14 text-lg font-semibold text-stone-100">
-                    Estratégia
-                </h3>
 
-                <p class="mt-4 text-sm leading-6 text-stone-500">
-                    Definimos arquitetura, prioridades e um caminho técnico compatível com o produto.
-                </p>
+                <div class="mt-10">
+
+                    <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">
+                        etapa / 01
+                    </div>
+
+                    <h3 class="mt-3 text-lg font-semibold text-stone-100">
+                        Entendimento
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-6 text-stone-500">
+                        Entendemos o problema, usuários, contexto e objetivos antes de escrever código.
+                    </p>
+
+                </div>
+
             </article>
+
+
+            <!-- 02 -->
 
             <article class="process-item border-b border-stone-800 p-7 md:border-b-0 md:border-r">
-                <div class="process-number font-mono text-4xl text-stone-700 transition">
-                    03
+
+                <div class="flex items-center justify-between">
+
+                    <div class="process-icon flex h-12 w-12 items-center justify-center border border-stone-800 text-stone-500">
+
+                        <!-- Strategy / Compass -->
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            class="h-5 w-5"
+                        >
+                            <circle cx="12" cy="12" r="8"/>
+                            <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9z"/>
+                        </svg>
+
+                    </div>
+
+                    <span class="process-arrow font-mono text-sm text-stone-700">
+                        ↗
+                    </span>
+
                 </div>
 
-                <h3 class="mt-14 text-lg font-semibold text-stone-100">
-                    Construção
-                </h3>
 
-                <p class="mt-4 text-sm leading-6 text-stone-500">
-                    Desenvolvemos em ciclos curtos, mantendo qualidade, clareza e feedback contínuo.
-                </p>
+                <div class="mt-10">
+
+                    <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">
+                        etapa / 02
+                    </div>
+
+                    <h3 class="mt-3 text-lg font-semibold text-stone-100">
+                        Estratégia
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-6 text-stone-500">
+                        Definimos arquitetura, prioridades e um caminho técnico compatível com o produto.
+                    </p>
+
+                </div>
+
             </article>
+
+
+            <!-- 03 -->
+
+            <article class="process-item border-b border-stone-800 p-7 md:border-b-0 md:border-r">
+
+                <div class="flex items-center justify-between">
+
+                    <div class="process-icon flex h-12 w-12 items-center justify-center border border-stone-800 text-stone-500">
+
+                        <!-- Construction / Code -->
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            class="h-5 w-5"
+                        >
+                            <path d="m8 8-4 4 4 4"/>
+                            <path d="m16 8 4 4-4 4"/>
+                            <path d="m14 5-4 14"/>
+                        </svg>
+
+                    </div>
+
+                    <span class="process-arrow font-mono text-sm text-stone-700">
+                        ↗
+                    </span>
+
+                </div>
+
+
+                <div class="mt-10">
+
+                    <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">
+                        etapa / 03
+                    </div>
+
+                    <h3 class="mt-3 text-lg font-semibold text-stone-100">
+                        Construção
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-6 text-stone-500">
+                        Desenvolvemos em ciclos curtos, mantendo qualidade, clareza e feedback contínuo.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 04 -->
 
             <article class="process-item p-7">
-                <div class="process-number font-mono text-4xl text-stone-700 transition">
-                    04
+
+                <div class="flex items-center justify-between">
+
+                    <div class="process-icon flex h-12 w-12 items-center justify-center border border-stone-800 text-stone-500">
+
+                        <!-- Evolution / Activity -->
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            class="h-5 w-5"
+                        >
+                            <path d="M4 17 9 12l4 3 7-8"/>
+                            <path d="M16 7h4v4"/>
+                        </svg>
+
+                    </div>
+
+                    <span class="process-arrow font-mono text-sm text-stone-700">
+                        ↗
+                    </span>
+
                 </div>
 
-                <h3 class="mt-14 text-lg font-semibold text-stone-100">
-                    Evolução
-                </h3>
 
-                <p class="mt-4 text-sm leading-6 text-stone-500">
-                    Medimos, corrigimos e evoluímos o produto conforme novas necessidades aparecem.
-                </p>
+                <div class="mt-10">
+
+                    <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">
+                        etapa / 04
+                    </div>
+
+                    <h3 class="mt-3 text-lg font-semibold text-stone-100">
+                        Evolução
+                    </h3>
+
+                    <p class="mt-4 text-sm leading-6 text-stone-500">
+                        Medimos, corrigimos e evoluímos o produto conforme novas necessidades aparecem.
+                    </p>
+
+                </div>
+
             </article>
 
         </div>
@@ -628,6 +983,7 @@
         <div class="grid lg:grid-cols-[280px_1fr] lg:gap-16">
 
             <div>
+
                 <div class="font-mono text-[10px] uppercase tracking-[.2em] text-amber-200">
                     03 / caderno técnico
                 </div>
@@ -647,6 +1003,7 @@
                 >
                     Ver todos os artigos →
                 </a>
+
             </div>
 
 
@@ -661,6 +1018,7 @@
                         </time>
 
                         <div>
+
                             <div class="mb-2 font-mono text-[9px] uppercase tracking-[.16em] text-stone-600">
                                 IA GENERATIVA · ARQUITETURA
                             </div>
@@ -673,6 +1031,7 @@
                                 Contexto, observabilidade e limites claros para sistemas
                                 que incorporam modelos generativos.
                             </p>
+
                         </div>
 
                         <div class="font-mono text-[9px] text-stone-700 md:text-right">
@@ -680,6 +1039,7 @@
                         </div>
 
                     </div>
+
                 </article>
 
 
@@ -692,6 +1052,7 @@
                         </time>
 
                         <div>
+
                             <div class="mb-2 font-mono text-[9px] uppercase tracking-[.16em] text-stone-600">
                                 SAAS · PRODUTO
                             </div>
@@ -704,6 +1065,7 @@
                                 Multi-tenancy, observabilidade, filas e decisões de
                                 arquitetura que aparecem conforme o produto cresce.
                             </p>
+
                         </div>
 
                         <div class="font-mono text-[9px] text-stone-700 md:text-right">
@@ -711,6 +1073,7 @@
                         </div>
 
                     </div>
+
                 </article>
 
 
@@ -723,6 +1086,7 @@
                         </time>
 
                         <div>
+
                             <div class="mb-2 font-mono text-[9px] uppercase tracking-[.16em] text-stone-600">
                                 GOVERNANÇA · ENGENHARIA
                             </div>
@@ -735,6 +1099,7 @@
                                 Como identificar dívida técnica, comunicar seu impacto
                                 e decidir quando vale a pena resolvê-la.
                             </p>
+
                         </div>
 
                         <div class="font-mono text-[9px] text-stone-700 md:text-right">
@@ -742,11 +1107,15 @@
                         </div>
 
                     </div>
+
                 </article>
 
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
@@ -776,7 +1145,6 @@
                     não para empurrar uma solução pronta.
                 </p>
 
-
                 <div class="mt-12 border-t border-stone-800 pt-7">
 
                     <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">
@@ -798,7 +1166,9 @@
             <form class="border border-stone-800 bg-[#0F0C0B]">
 
                 <div class="border-b border-stone-800 px-6 py-4">
+
                     <div class="flex items-center justify-between">
+
                         <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">
                             novo_projeto.form
                         </span>
@@ -806,13 +1176,16 @@
                         <span class="font-mono text-[9px] text-stone-700">
                             [04]
                         </span>
+
                     </div>
+
                 </div>
 
 
                 <div class="space-y-6 p-6 sm:p-8">
 
                     <div>
+
                         <label
                             for="nome"
                             class="mb-2 block font-mono text-[9px] uppercase tracking-[.16em] text-stone-600"
@@ -826,10 +1199,12 @@
                             placeholder="Como podemos chamar você?"
                             class="h-12 w-full border border-stone-800 bg-[#0B0807] px-4 font-mono text-xs text-stone-200 outline-none placeholder:text-stone-700 focus:border-stone-600"
                         />
+
                     </div>
 
 
                     <div>
+
                         <label
                             for="email"
                             class="mb-2 block font-mono text-[9px] uppercase tracking-[.16em] text-stone-600"
@@ -843,10 +1218,12 @@
                             placeholder="voce@empresa.com"
                             class="h-12 w-full border border-stone-800 bg-[#0B0807] px-4 font-mono text-xs text-stone-200 outline-none placeholder:text-stone-700 focus:border-stone-600"
                         />
+
                     </div>
 
 
                     <div>
+
                         <label
                             for="projeto"
                             class="mb-2 block font-mono text-[9px] uppercase tracking-[.16em] text-stone-600"
@@ -860,6 +1237,7 @@
                             placeholder="O que você está construindo? Qual problema precisa resolver?"
                             class="w-full resize-none border border-stone-800 bg-[#0B0807] p-4 font-mono text-xs leading-6 text-stone-200 outline-none placeholder:text-stone-700 focus:border-stone-600"
                         ></textarea>
+
                     </div>
 
 
@@ -871,16 +1249,20 @@
                         <span>→</span>
                     </button>
 
+
                     <p class="font-mono text-[9px] leading-5 text-stone-700">
                         Ao enviar, você inicia uma conversa.
                         Sem spam. Sem pitch automático.
                     </p>
 
                 </div>
+
             </form>
 
         </div>
+
     </div>
+
 </section>
 
 </main>
@@ -897,6 +1279,7 @@
         <div class="flex flex-col justify-between gap-6 md:flex-row md:items-center">
 
             <div>
+
                 <div class="font-mono text-xs text-stone-500">
                     coffee<span class="text-amber-200">.</span>dev
                 </div>
@@ -904,6 +1287,7 @@
                 <div class="mt-1 font-mono text-[9px] uppercase tracking-[.16em] text-stone-700">
                     software feito com código limpo e café forte.
                 </div>
+
             </div>
 
 
@@ -935,6 +1319,7 @@
         </div>
 
     </div>
+
 </footer>
 
 </body>
