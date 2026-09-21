@@ -60,120 +60,218 @@
             color: #0B0807;
         }
 
-        /* =====================================================
-           COFFEE SMOKE
-        ===================================================== */
+        /* =========================================================
+        MOVING COFFEE SMOKE
+        ========================================================= */
 
-        .smoke-background {
+        .coffee-smoke {
             position: absolute;
             inset: 0;
             overflow: hidden;
             pointer-events: none;
+            z-index: 0;
         }
 
-        .smoke {
+        .coffee-smoke-svg {
             position: absolute;
-            bottom: -180px;
-            width: 420px;
-            height: 620px;
-            border-radius: 50%;
-            filter: blur(55px);
-            opacity: .12;
-            background:
-                radial-gradient(
-                    ellipse at center,
-                    rgba(245, 158, 11, .34) 0%,
-                    rgba(120, 53, 15, .22) 32%,
-                    rgba(78, 44, 24, .10) 55%,
-                    transparent 72%
-                );
-            transform-origin: bottom center;
-            animation: smokeRise 14s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            min-width: 900px;
+            left: 50%;
+            bottom: -5%;
+            transform: translateX(-50%);
+            opacity: .9;
         }
 
-        .smoke-1 {
-            left: 10%;
-            animation-delay: -2s;
-            animation-duration: 16s;
+        /*
+        * Each smoke stream has a different movement.
+        * This prevents the animation from looking like one
+        * duplicated object moving back and forth.
+        */
+
+        .smoke-cloud {
+            transform-box: fill-box;
+            transform-origin: center bottom;
         }
 
-        .smoke-2 {
-            left: 34%;
-            width: 520px;
-            height: 700px;
-            opacity: .09;
-            animation-delay: -7s;
-            animation-duration: 19s;
+        .smoke-cloud-1 {
+            animation:
+                smokeMain 11s ease-in-out infinite alternate;
         }
 
-        .smoke-3 {
-            left: 58%;
-            width: 460px;
-            height: 650px;
-            opacity: .10;
-            animation-delay: -11s;
-            animation-duration: 17s;
-        }
-
-        .smoke-4 {
-            left: 78%;
-            width: 350px;
-            height: 580px;
-            opacity: .07;
+        .smoke-cloud-2 {
+            animation:
+                smokeSecondary 15s ease-in-out infinite alternate;
             animation-delay: -5s;
-            animation-duration: 21s;
         }
 
-        @keyframes smokeRise {
+        .smoke-cloud-3 {
+            animation:
+                smokeSide 13s ease-in-out infinite alternate;
+            animation-delay: -8s;
+        }
+
+
+        /* Main vertical movement */
+
+        @keyframes smokeMain {
+
             0% {
                 transform:
-                    translate3d(0, 80px, 0)
-                    scale(.75)
-                    rotate(-5deg);
-                opacity: 0;
+                    translate3d(-30px, 35px, 0)
+                    scale(.92)
+                    rotate(-3deg);
+                opacity: .35;
             }
 
-            15% {
-                opacity: .5;
-            }
-
-            40% {
+            25% {
                 transform:
-                    translate3d(45px, -100px, 0)
-                    scale(1)
-                    rotate(8deg);
+                    translate3d(15px, 0, 0)
+                    scale(1);
+                opacity: .55;
             }
 
-            65% {
+            50% {
                 transform:
-                    translate3d(-35px, -270px, 0)
-                    scale(1.15)
-                    rotate(-7deg);
+                    translate3d(55px, -20px, 0)
+                    scale(1.05)
+                    rotate(4deg);
+                opacity: .45;
             }
 
-            85% {
-                opacity: .2;
+            75% {
+                transform:
+                    translate3d(20px, -45px, 0)
+                    scale(1.1)
+                    rotate(-2deg);
+                opacity: .6;
             }
 
             100% {
                 transform:
-                    translate3d(65px, -470px, 0)
-                    scale(1.35)
-                    rotate(10deg);
-                opacity: 0;
+                    translate3d(-40px, -70px, 0)
+                    scale(1.18)
+                    rotate(5deg);
+                opacity: .3;
             }
         }
 
-        /* Fine atmospheric haze */
-        .smoke-haze {
+
+        /* Secondary stream */
+
+        @keyframes smokeSecondary {
+
+            0% {
+                transform:
+                    translate3d(50px, 30px, 0)
+                    scale(.9)
+                    rotate(5deg);
+                opacity: .25;
+            }
+
+            30% {
+                transform:
+                    translate3d(-20px, -15px, 0)
+                    scale(1.05)
+                    rotate(-5deg);
+                opacity: .45;
+            }
+
+            60% {
+                transform:
+                    translate3d(-65px, -50px, 0)
+                    scale(1.12)
+                    rotate(7deg);
+                opacity: .35;
+            }
+
+            100% {
+                transform:
+                    translate3d(40px, -90px, 0)
+                    scale(1.2)
+                    rotate(-4deg);
+                opacity: .2;
+            }
+        }
+
+
+        /* Side smoke */
+
+        @keyframes smokeSide {
+
+            0% {
+                transform:
+                    translate3d(-40px, 20px, 0)
+                    scale(.9);
+                opacity: .2;
+            }
+
+            40% {
+                transform:
+                    translate3d(35px, -30px, 0)
+                    scale(1.05)
+                    rotate(6deg);
+                opacity: .4;
+            }
+
+            70% {
+                transform:
+                    translate3d(80px, -55px, 0)
+                    scale(1.15)
+                    rotate(-5deg);
+                opacity: .25;
+            }
+
+            100% {
+                transform:
+                    translate3d(-10px, -100px, 0)
+                    scale(1.25);
+                opacity: .15;
+            }
+        }
+
+
+        /* Darkens the edges so the smoke blends naturally
+        into the espresso background. */
+
+        .coffee-smoke-vignette {
             position: absolute;
             inset: 0;
+
             background:
                 radial-gradient(
-                    ellipse 70% 65% at 50% 100%,
-                    rgba(120, 53, 15, .14),
-                    transparent 70%
+                    ellipse at 50% 90%,
+                    transparent 0%,
+                    rgba(11, 8, 7, .12) 45%,
+                    rgba(11, 8, 7, .65) 100%
                 );
+
+            pointer-events: none;
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 768px) {
+
+            .coffee-smoke-svg {
+                min-width: 700px;
+                width: 150%;
+                left: 50%;
+                opacity: .65;
+            }
+
+        }
+
+
+        /* Accessibility */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .smoke-cloud {
+                animation: none;
+            }
+
         }
 
         /* =====================================================
@@ -420,16 +518,88 @@
 <section class="relative overflow-hidden border-b border-stone-800">
 
     <!-- Animated coffee smoke -->
+    <div class="coffee-smoke" aria-hidden="true">
+        <svg
+            class="coffee-smoke-svg"
+            viewBox="0 0 900 700"
+            preserveAspectRatio="xMidYMid slice"
+        >
+            <defs>
+                <filter id="smokeBlur">
+                    <feGaussianBlur stdDeviation="18" />
+                </filter>
 
-    <div class="smoke-background" aria-hidden="true">
+                <filter id="smokeBlurSoft">
+                    <feGaussianBlur stdDeviation="32" />
+                </filter>
 
-        <div class="smoke smoke-1"></div>
-        <div class="smoke smoke-2"></div>
-        <div class="smoke smoke-3"></div>
-        <div class="smoke smoke-4"></div>
+                <radialGradient id="smokeGradient">
+                    <stop offset="0%" stop-color="#FDE68A" stop-opacity=".30" />
+                    <stop offset="35%" stop-color="#92400E" stop-opacity=".18" />
+                    <stop offset="75%" stop-color="#78350F" stop-opacity=".06" />
+                    <stop offset="100%" stop-color="#78350F" stop-opacity="0" />
+                </radialGradient>
+            </defs>
 
-        <div class="smoke-haze"></div>
+            <!-- Main smoke -->
+            <g
+                class="smoke-cloud smoke-cloud-1"
+                filter="url(#smokeBlur)"
+            >
+                <path
+                    d="
+                        M420 690
+                        C350 620 470 570 400 500
+                        C330 430 470 380 410 310
+                        C350 240 470 180 420 70
+                    "
+                    fill="none"
+                    stroke="url(#smokeGradient)"
+                    stroke-width="115"
+                    stroke-linecap="round"
+                />
+            </g>
 
+            <!-- Secondary curling smoke -->
+            <g
+                class="smoke-cloud smoke-cloud-2"
+                filter="url(#smokeBlurSoft)"
+            >
+                <path
+                    d="
+                        M500 700
+                        C590 620 470 570 540 490
+                        C610 410 480 350 550 270
+                        C620 190 520 120 580 20
+                    "
+                    fill="none"
+                    stroke="url(#smokeGradient)"
+                    stroke-width="90"
+                    stroke-linecap="round"
+                />
+            </g>
+
+            <!-- Left drifting smoke -->
+            <g
+                class="smoke-cloud smoke-cloud-3"
+                filter="url(#smokeBlur)"
+            >
+                <path
+                    d="
+                        M330 700
+                        C250 630 350 570 280 500
+                        C210 430 330 350 270 280
+                        C220 220 290 140 250 60
+                    "
+                    fill="none"
+                    stroke="url(#smokeGradient)"
+                    stroke-width="75"
+                    stroke-linecap="round"
+                />
+            </g>
+        </svg>
+
+        <div class="coffee-smoke-vignette"></div>
     </div>
 
 
