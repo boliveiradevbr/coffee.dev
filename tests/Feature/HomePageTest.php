@@ -46,7 +46,8 @@ it('shows the three newest posts in the teaser list', function () {
 
 it('serves the logo locally instead of from googleusercontent', function () {
     $this->get('/')
-        ->assertSee('/images/logo-40x40.png', false)
+        ->assertSee('src="/images/logo-40x40.png"', false)
+        ->assertSee('alt="coffee.dev logo"', false)
         ->assertDontSee('lh3.googleusercontent.com', false);
 });
 

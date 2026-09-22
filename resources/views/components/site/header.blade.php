@@ -19,11 +19,13 @@
 <header class="border-b border-stone-800 bg-coffee-950/95 backdrop-blur-md">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="{{ route('home') }}" class="group flex items-center gap-3">
-            <div
-                class="flex h-9 w-9 items-center justify-center border border-stone-700 font-mono text-sm text-amber-100 transition group-hover:border-amber-100"
-            >
-                &lt;/
-            </div>
+            <img
+                src="/images/logo-40x40.png"
+                alt="coffee.dev logo"
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110"
+            />
 
             <div>
                 <div class="text-[15px] font-bold tracking-tight text-stone-100">
