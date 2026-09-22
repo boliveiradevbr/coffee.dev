@@ -1,15 +1,12 @@
 {{--
-    Solid gold call to action. Renders an <a> when given an href, otherwise a
-    <button>. Padding and layout utilities stay with the caller because they vary
-    per placement; only the button identity lives here.
-
-    rounded-lg resolves to 4px in this theme — the radius DESIGN.md specifies for
-    buttons, and which the prototype's `rounded-DEFAULT` never emitted.
+    Solid cream call to action. Renders an <a> when given an href, otherwise a
+    <button>. Height and padding stay with the caller because they vary per
+    placement; only the button identity lives here.
 --}}
 @props(['href' => null, 'external' => false])
 
 @php
-    $base = 'btn-primary font-label-caps text-label-caps rounded-lg font-bold';
+    $base = 'inline-flex items-center bg-amber-100 font-mono text-xs font-semibold uppercase tracking-[.12em] text-coffee-950 transition hover:bg-amber-200';
 @endphp
 
 @if ($href)

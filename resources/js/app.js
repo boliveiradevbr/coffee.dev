@@ -1,11 +1,9 @@
 /**
- * Entry point for the site: ambient shader, mobile menu, scroll reveal.
+ * Entry point for the site: mobile menu.
  */
 
-import { initShaderBackground } from './shader.js';
-
-/** The navigation breakpoint, mirroring @media (min-width: 1099px) in app.css. */
-const DESKTOP_NAV_QUERY = '(min-width: 1099px)';
+/** Tailwind's md breakpoint, where the header switches to the desktop nav. */
+const DESKTOP_NAV_QUERY = '(min-width: 768px)';
 
 function initMobileMenu() {
     const toggle = document.getElementById('mobile-menu-toggle');
@@ -20,10 +18,10 @@ function initMobileMenu() {
     const setState = (isOpen) => {
         menu.classList.toggle('is-open', isOpen);
         toggle.setAttribute('aria-expanded', String(isOpen));
-        toggle.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
 
         if (icon) {
-            icon.textContent = isOpen ? 'close' : 'menu';
+            icon.textContent = isOpen ? '✕' : '☰';
         }
     };
 
@@ -43,38 +41,4 @@ function initMobileMenu() {
     });
 }
 
-function initScrollReveal() {
-    const targets = document.querySelectorAll('.scroll-reveal:not(.visible)');
-
-    if (targets.length === 0) {
-        return;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-        targets.forEach((target) => target.classList.add('visible'));
-
-        return;
-    }
-
-    // The -100px bottom inset reproduces the prototype's `windowHeight - 100`
-    // threshold. Elements are revealed once and then stop being watched.
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    return;
-                }
-
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            });
-        },
-        { rootMargin: '0px 0px -100px 0px' },
-    );
-
-    targets.forEach((target) => observer.observe(target));
-}
-
-initShaderBackground();
 initMobileMenu();
-initScrollReveal();

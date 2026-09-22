@@ -1,11 +1,8 @@
 {{--
-    Fixed glass header, 80px tall. Collapses to a hamburger below 1099px — the
-    .desktop-nav / .desktop-cta / .mobile-nav-toggle visibility is driven entirely
-    by the @media (min-width: 1099px) block in app.css, which is why the desktop
-    elements ship with `hidden`.
+    Hairline header, 80px tall. Collapses to a toggle below md; the mobile menu's
+    open state is driven by app.js through .mobile-menu.is-open in app.css.
 
-    $badge renders the "Blog" chip that the editorial pages show next to the
-    wordmark.
+    $badge replaces the "software foundry" tagline on the editorial pages.
 --}}
 @props(['badge' => null])
 
@@ -13,78 +10,85 @@
     $links = [
         ['label' => 'Serviços', 'url' => route('home').'#servicos'],
         ['label' => 'Processo', 'url' => route('home').'#processo'],
-        ['label' => 'Contato', 'url' => route('home').'#contato'],
-        ['label' => 'Blog', 'url' => route('blog.index')],
+        ['label' => 'Artigos', 'url' => route('blog.index')],
     ];
 
-    $desktopLinkClasses = 'font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-primary transition-colors py-2 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary hover:after:w-full after:transition-all after:duration-300';
-
-    $mobileLinkClasses = 'mobile-menu-link font-label-caps text-label-caps text-on-surface-variant font-medium hover:text-primary transition-colors py-3';
+    $ctaUrl = route('home').'#contato';
 @endphp
 
-<header
-    class="fixed top-0 w-full z-50 glass-panel border-b border-white/10 shadow-2xl transition-all duration-300 ease-in-out"
->
-    <div
-        class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20"
-    >
-        <a class="flex items-center gap-3 group" href="{{ route('home') }}">
+<header class="border-b border-stone-800 bg-coffee-950/95 backdrop-blur-md">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <a href="{{ route('home') }}" class="group flex items-center gap-3">
             <img
-                alt="coffee.dev logo"
-                class="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300"
                 src="/images/logo-40x40.png"
-                width="40"
-                height="40"
+                alt="coffee.dev logo"
+                width="36"
+                height="36"
+                class="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110"
             />
-            <span class="font-display-lg text-headline-lg font-bold text-crema-white tracking-tight">
-                coffee<span class="text-primary-container">.</span>dev
+
+            <div>
+                <div class="text-[15px] font-bold tracking-tight text-stone-100">
+                    coffee<span class="text-amber-200">.</span>dev
+                </div>
+
                 @if ($badge)
-                    <span
-                        class="inline-flex items-center rounded-full bg-gray-400/10 px-2 py-1 text-xs text-gray-400 inset-ring inset-ring-gray-400/20"
-                    >{{ $badge }}</span>
+                    <div class="site-badge font-mono text-[9px] uppercase tracking-[.2em] text-amber-200">
+                        {{ $badge }}
+                    </div>
+                @else
+                    <div class="font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">software foundry</div>
                 @endif
-            </span>
+            </div>
         </a>
 
-        <nav class="desktop-nav hidden gap-8 items-center">
+        <nav class="desktop-nav hidden items-center gap-8 md:flex">
             @foreach ($links as $link)
-                <a class="{{ $desktopLinkClasses }}" href="{{ $link['url'] }}">{{ $link['label'] }}</a>
+                <a
+                    href="{{ $link['url'] }}"
+                    class="line-hover font-mono text-[11px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
+                >
+                    {{ $link['label'] }}
+                </a>
             @endforeach
+
+            <a
+                href="{{ $ctaUrl }}"
+                class="border border-stone-700 px-4 py-2 font-mono text-[11px] uppercase tracking-[.12em] text-amber-100 transition hover:border-amber-100 hover:bg-amber-100 hover:text-coffee-950"
+            >
+                Vamos conversar
+            </a>
         </nav>
 
-        <x-btn-primary
-            :href="config('site.whatsapp')"
-            external
-            class="desktop-cta hidden items-center gap-2 px-6 py-3"
-        >
-            Falar com especialista
-        </x-btn-primary>
-
         <button
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            aria-label="Abrir menu de navegação"
-            class="mobile-nav-toggle text-on-surface hover:text-primary transition-colors"
             id="mobile-menu-toggle"
             type="button"
+            class="flex h-10 w-10 items-center justify-center border border-stone-800 md:hidden"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Abrir menu"
         >
-            <x-icon name="menu" class="text-3xl" />
+            <span class="font-mono text-sm text-stone-300">☰</span>
         </button>
     </div>
 
-    <nav aria-label="Navegação mobile" class="mobile-menu" id="mobile-menu">
-        <div class="px-margin-mobile pb-5 flex flex-col gap-1 border-t border-white/5">
+    <nav id="mobile-menu" aria-label="Navegação mobile" class="mobile-menu md:hidden">
+        <div class="flex flex-col gap-1 border-t border-stone-800 px-5 pb-5 pt-3 sm:px-8">
             @foreach ($links as $link)
-                <a class="{{ $mobileLinkClasses }}" href="{{ $link['url'] }}">{{ $link['label'] }}</a>
+                <a
+                    href="{{ $link['url'] }}"
+                    class="mobile-menu-link py-3 font-mono text-[11px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
+                >
+                    {{ $link['label'] }}
+                </a>
             @endforeach
 
-            <x-btn-primary
-                :href="config('site.whatsapp')"
-                external
-                class="mobile-menu-link px-6 py-3 text-center mt-2"
+            <a
+                href="{{ $ctaUrl }}"
+                class="mobile-menu-link mt-2 border border-stone-700 px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[.12em] text-amber-100"
             >
-                Falar com especialista
-            </x-btn-primary>
+                Vamos conversar
+            </a>
         </div>
     </nav>
 </header>
