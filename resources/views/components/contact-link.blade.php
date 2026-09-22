@@ -1,12 +1,11 @@
-{{-- Icon badge + monospaced label, as used in the contact section. --}}
-@props(['href', 'label', 'ariaLabel', 'external' => false])
+{{-- Channel name + address, as listed under "contato direto". --}}
+@props(['href', 'channel', 'label', 'external' => false])
 
 <a
-    aria-label="{{ $ariaLabel }}"
-    class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-colors"
     href="{{ $href }}"
+    class="group flex items-baseline justify-between gap-6 border-b border-stone-800 py-3"
     @if ($external) target="_blank" rel="noopener noreferrer" @endif
 >
-    {{ $icon }}
-    <span class="font-code-sm text-code-sm">{{ $label }}</span>
+    <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">{{ $channel }}</span>
+    <span class="line-hover font-mono text-xs text-stone-300 transition group-hover:text-amber-100">{{ $label }}</span>
 </a>

@@ -1,12 +1,21 @@
-{{-- Dark field with a gold bottom border on focus. See .contact-field in app.css. --}}
-@props(['textarea' => false])
+{{--
+    Labelled field for the briefing form. focus:ring-0 cancels the blue focus
+    ring that @tailwindcss/forms adds on top of the border change.
+--}}
+@props(['id', 'label', 'textarea' => false])
 
 @php
-    $base = 'w-full py-3 px-4 rounded-lg font-body-md text-body-md placeholder:text-outline contact-field';
+    $base = 'w-full border border-stone-800 bg-coffee-950 font-mono text-xs text-stone-200 outline-none placeholder:text-stone-700 focus:border-stone-600 focus:ring-0';
 @endphp
 
-@if ($textarea)
-    <textarea {{ $attributes->class($base) }}></textarea>
-@else
-    <input {{ $attributes->class($base)->merge(['type' => 'text']) }} />
-@endif
+<div>
+    <label for="{{ $id }}" class="mb-2 block font-mono text-[9px] uppercase tracking-[.16em] text-stone-600">
+        {{ $label }}
+    </label>
+
+    @if ($textarea)
+        <textarea id="{{ $id }}" {{ $attributes->class([$base, 'resize-none p-4 leading-6']) }}></textarea>
+    @else
+        <input id="{{ $id }}" {{ $attributes->class([$base, 'h-12 px-4'])->merge(['type' => 'text']) }} />
+    @endif
+</div>

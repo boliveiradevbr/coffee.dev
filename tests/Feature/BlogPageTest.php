@@ -13,20 +13,20 @@ it('lists every post on the index', function () {
     $response = $this->get('/blog')
         ->assertOk()
         ->assertSee('Ideias para construir o próximo.', false)
-        ->assertSee('class="blog-page"', false);
+        ->assertSee('class="blog-list', false);
 
     foreach (posts() as $post) {
         $response->assertSee($post['titulo'], false);
     }
 
-    expect(substr_count($response->getContent(), 'class="blog-card"'))->toBe(count(posts()));
+    expect(substr_count($response->getContent(), 'class="article block'))->toBe(count(posts()));
 });
 
 it('shows the blog badge in the header of the editorial pages', function (string $path) {
-    $this->get($path)->assertOk()->assertSee('inset-ring-gray-400/20', false);
+    $this->get($path)->assertOk()->assertSee('site-badge', false);
 })->with([
     '/blog',
-    '/noticias/mercado-de-saas-no-brasil-projeta-crescimento-acelerado',
+    '/blog/mercado-de-saas-no-brasil-projeta-crescimento-acelerado',
 ]);
 
 it('renders an article by slug', function () {
@@ -37,7 +37,7 @@ it('renders an article by slug', function () {
         ->assertSee($post['titulo'], false)
         ->assertSee($post['headline'], false)
         ->assertSee($post['conteudo'], false)
-        ->assertSee('class="article-page"', false)
+        ->assertSee('class="article-page', false)
         ->assertSee('datetime="'.$post['data_iso'].'"', false);
 });
 
@@ -68,13 +68,13 @@ it('omits the previous card on the first post and the next card on the last', fu
 });
 
 it('returns the branded 404 page for an unknown slug', function () {
-    $this->get('/noticias/slug-que-nao-existe')
+    $this->get('/blog/slug-que-nao-existe')
         ->assertNotFound()
         ->assertSee('Página não encontrada.', false)
         ->assertSee('Erro 404', false)
-        // Inherits the layout: header, footer and shader all present.
-        ->assertSee('shader-canvas-ANIMATION_6', false)
-        ->assertSee('Code. Coffee. Creativity.', false);
+        // Inherits the layout: header and footer both present.
+        ->assertSee('id="mobile-menu"', false)
+        ->assertSee('software feito com código limpo e café forte.', false);
 });
 
 it('exposes canonical and Open Graph metadata on an article', function () {
@@ -87,15 +87,12 @@ it('exposes canonical and Open Graph metadata on an article', function () {
         ->assertSee('property="og:image"', false);
 });
 
-it('falls back to a placeholder when a post has no cover', function () {
-    $post = posts()[0];
-    $post['capa'] = '';
+it('shows the dotted date and an estimated reading time on a post row', function () {
+    $post = [...posts()[0], 'data_iso' => '2026-09-18', 'conteudo' => implode(' ', array_fill(0, 401, 'café'))];
 
-    $markup = view('components.post-card', ['post' => $post])->render();
-
-    expect($markup)
-        ->toContain('blog-card__placeholder')
-        ->toContain('Sem Imagem')
+    expect(view('components.post-row', ['post' => $post])->render())
+        ->toContain('18.09.2026')
+        ->toContain('03 MIN')
         ->not->toContain('<img');
 });
 
@@ -111,19 +108,19 @@ it('renders the article cover and nav thumbnail placeholders when covers are mis
     expect(view('components.article-nav-card', [
         'post' => $bare,
         'label' => 'Notícia anterior',
-        'icon' => 'arrow_upward',
+        'arrow' => '↑',
     ])->render())
-        ->toContain('article-navigation-placeholder')
-        ->toContain('Sem imagem');
+        ->toContain('Sem imagem')
+        ->not->toContain('<img');
 });
 
-it('uses the same card markup on the home teaser and the blog index', function () {
+it('uses the same row markup on the home teaser and the blog index', function () {
     $post = app(PostRepository::class)->latest(1)[0];
 
     $home = $this->get('/')->getContent();
     $index = $this->get('/blog')->getContent();
 
-    $card = fn (string $html) => substr($html, $start = strpos($html, '<a class="blog-card"'), strpos($html, '</a>', $start) - $start);
+    $card = fn (string $html) => substr($html, $start = strpos($html, '<a class="article block'), strpos($html, '</a>', $start) - $start);
 
     expect($card($home))->toBe($card($index))
         ->and($card($home))->toContain($post['titulo']);

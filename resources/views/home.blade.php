@@ -1,203 +1,384 @@
 @extends('layouts.app')
 
-@section('title', 'coffee.dev - Code. Coffee. Creativity.')
-
 @section('content')
     {{-- Hero --}}
-    <section
-        class="relative min-h-[90vh] flex items-center justify-center pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
-    >
-        <div class="w-full grid grid-cols-1 items-center">
-            <div class="scroll-reveal visible text-center">
-                <div class="flex justify-center items-center gap-4 mb-6 font-code-sm text-code-sm text-outline-variant">
-                    <span class="flex items-center gap-1">
-                        <x-icon name="code" class="text-sm" />
-                        Código limpo
-                    </span>
-                    <span class="w-1 h-1 rounded-full bg-primary-container/30"></span>
-                    <span class="flex items-center gap-1">
-                        <x-icon name="local_cafe" class="text-sm" />
-                        Muito café
-                    </span>
-                    <span class="w-1 h-1 rounded-full bg-primary-container/30"></span>
-                    <span class="flex items-center gap-1">
-                        <x-icon name="rocket_launch" class="text-sm" />
-                        Produtos reais
-                    </span>
+    <section class="relative overflow-hidden border-b border-stone-800">
+        <div class="coffee-smoke" aria-hidden="true">
+            <svg class="coffee-smoke-svg" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <filter id="smokeBlur">
+                        <feGaussianBlur stdDeviation="18" />
+                    </filter>
+
+                    <filter id="smokeBlurSoft">
+                        <feGaussianBlur stdDeviation="32" />
+                    </filter>
+
+                    <radialGradient id="smokeGradient">
+                        <stop offset="0%" stop-color="#FDE68A" stop-opacity=".30" />
+                        <stop offset="35%" stop-color="#92400E" stop-opacity=".18" />
+                        <stop offset="75%" stop-color="#78350F" stop-opacity=".06" />
+                        <stop offset="100%" stop-color="#78350F" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+
+                <g class="smoke-cloud smoke-cloud-1" filter="url(#smokeBlur)">
+                    <path
+                        d="M420 690 C350 620 470 570 400 500 C330 430 470 380 410 310 C350 240 470 180 420 70"
+                        fill="none"
+                        stroke="url(#smokeGradient)"
+                        stroke-width="115"
+                        stroke-linecap="round"
+                    />
+                </g>
+
+                <g class="smoke-cloud smoke-cloud-2" filter="url(#smokeBlurSoft)">
+                    <path
+                        d="M500 700 C590 620 470 570 540 490 C610 410 480 350 550 270 C620 190 520 120 580 20"
+                        fill="none"
+                        stroke="url(#smokeGradient)"
+                        stroke-width="90"
+                        stroke-linecap="round"
+                    />
+                </g>
+
+                <g class="smoke-cloud smoke-cloud-3" filter="url(#smokeBlur)">
+                    <path
+                        d="M330 700 C250 630 350 570 280 500 C210 430 330 350 270 280 C220 220 290 140 250 60"
+                        fill="none"
+                        stroke="url(#smokeGradient)"
+                        stroke-width="75"
+                        stroke-linecap="round"
+                    />
+                </g>
+            </svg>
+
+            <div class="coffee-smoke-vignette"></div>
+        </div>
+
+        <div
+            class="pointer-events-none absolute left-1/2 top-0 h-full w-px bg-linear-to-b from-transparent via-stone-800/40 to-transparent"
+            aria-hidden="true"
+        ></div>
+
+        <div class="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:py-40">
+            <div class="grid lg:grid-cols-[1fr_280px] lg:gap-16">
+                <div>
+                    <div class="mb-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.22em] text-stone-500">
+                        <span class="coffee-cursor h-1.5 w-1.5 bg-amber-200"></span>
+                        engenharia de software independente
+                    </div>
+
+                    <h1
+                        class="max-w-5xl text-5xl font-extrabold leading-[.98] tracking-[-0.055em] text-stone-100 sm:text-7xl lg:text-[88px]"
+                    >
+                        Software feito com
+                        <span class="text-amber-100">código limpo</span>
+                        e café forte.
+                    </h1>
+
+                    <div class="mt-10 grid max-w-4xl gap-8 md:grid-cols-[1fr_240px]">
+                        <p class="max-w-2xl text-lg leading-8 text-stone-400 sm:text-xl">
+                            Criamos produtos digitais para startups e empresas que entendem que performance,
+                            experiência e arquitetura sustentável não são detalhes.
+                        </p>
+
+                        <div class="border-l border-stone-800 pl-5 font-mono text-[10px] leading-6 text-stone-600">
+                            <div>STACK / PHP · LARAVEL</div>
+                            <div>FRONT / VUE · REACT</div>
+                            <div>DATA / SQL · REDIS</div>
+                            <div>INFRA / CLOUD · DOCKER</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 flex flex-col gap-3 sm:flex-row">
+                        <x-btn-primary href="#contato" class="h-12 justify-center px-6">
+                            Iniciar um projeto
+                            <span class="ml-4" aria-hidden="true">↗</span>
+                        </x-btn-primary>
+
+                        <a
+                            href="#servicos"
+                            class="inline-flex h-12 items-center justify-center border border-stone-700 px-6 font-mono text-xs uppercase tracking-[.12em] text-stone-300 transition hover:border-stone-500 hover:text-white"
+                        >
+                            Explorar capacidades
+                        </a>
+                    </div>
                 </div>
 
-                <h1
-                    class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-crema-white mb-8"
-                >
-                    Software feito com <br class="hidden md:block" />
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-amber-glow"
-                    >código limpo</span>
-                    e <br class="hidden md:block" />
-                    café forte.
-                </h1>
+                <div class="mt-16 hidden lg:block" aria-hidden="true">
+                    <div class="border border-stone-800 bg-coffee-900/80 backdrop-blur-sm">
+                        <div class="flex items-center justify-between border-b border-stone-800 px-4 py-3">
+                            <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">
+                                /coffee.config
+                            </span>
+                            <span class="font-mono text-[9px] text-stone-700">001</span>
+                        </div>
 
-                <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Criamos produtos digitais para startups e empresas que valorizam tecnologia bem feita,
-                    performance e experiência.
-                </p>
+                        <div class="space-y-4 p-5 font-mono text-[10px] leading-5">
+                            <div>
+                                <span class="text-stone-600">const</span>
+                                <span class="text-stone-300"> stack</span>
+                                <span class="text-stone-600"> =</span>
+                            </div>
+                            <div class="pl-4 text-amber-200">engineering</div>
 
-                <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-                    <x-btn-primary
-                        :href="config('site.whatsapp')"
-                        external
-                        class="px-8 py-4 flex items-center gap-2"
-                    >
-                        <x-icon name="local_cafe" class="text-lg" />
-                        Falar com nossos especialistas
-                    </x-btn-primary>
+                            <div>
+                                <span class="text-stone-600">const</span>
+                                <span class="text-stone-300"> quality</span>
+                                <span class="text-stone-600"> =</span>
+                            </div>
+                            <div class="pl-4 text-amber-200">non_negotiable</div>
+
+                            <div>
+                                <span class="text-stone-600">const</span>
+                                <span class="text-stone-300"> coffee</span>
+                                <span class="text-stone-600"> =</span>
+                            </div>
+                            <div class="pl-4 text-amber-200">"strong"</div>
+
+                            <div class="pt-3 text-stone-700">// ship with intention</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 font-mono text-[9px] leading-5 text-stone-700">
+                        BUILD WITH INTENTION.<br />
+                        SHIP WITH CONFIDENCE.
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     {{-- Services --}}
-    <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="servicos">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <x-service-card icon="terminal" title="Software sob medida">
-                Desenvolvimento focado em performance, escalabilidade e boas práticas.
-            </x-service-card>
-            <x-service-card icon="cloud" title="SaaS & Plataformas">
-                Produtos digitais completos, do MVP à escala.
-            </x-service-card>
-            <x-service-card icon="api" title="APIs & Integrações">
-                Integrações seguras e eficientes entre sistemas.
-            </x-service-card>
+    <section id="servicos" class="border-b border-stone-800">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+            <div class="grid lg:grid-cols-[280px_1fr]">
+                <div class="border-b border-stone-800 py-16 lg:border-b-0 lg:border-r lg:py-24 lg:pr-12">
+                    <x-eyebrow>01 / capacidades</x-eyebrow>
+
+                    <h2 class="mt-5 text-3xl font-bold tracking-tight text-stone-100">Engenharia antes de decoração.</h2>
+
+                    <p class="mt-6 text-sm leading-7 text-stone-500">
+                        Construímos software pensando no problema, no negócio e no que acontece depois do lançamento.
+                    </p>
+                </div>
+
+                <div class="lg:pl-12">
+                    <x-service-row
+                        number="01"
+                        tags="arquitetura · performance · escala"
+                        title="Software sob medida"
+                        class="border-b"
+                    >
+                        Sistemas desenhados para a realidade do seu negócio, com arquitetura sustentável, código
+                        legível e capacidade para crescer sem transformar cada mudança em uma operação de risco.
+                    </x-service-row>
+
+                    <x-service-row
+                        number="02"
+                        tags="produto · MVP · crescimento"
+                        title="SaaS & Plataformas"
+                        class="border-b"
+                    >
+                        Do primeiro MVP à operação em escala. Modelamos produto, experiência e infraestrutura para que
+                        decisões técnicas acompanhem a evolução do negócio.
+                    </x-service-row>
+
+                    <x-service-row number="03" tags="APIs · segurança · automação" title="APIs & Integrações">
+                        Conectamos sistemas, dados e serviços externos com APIs bem estruturadas, autenticação,
+                        observabilidade e uma preocupação constante com segurança.
+                    </x-service-row>
+                </div>
+            </div>
         </div>
     </section>
 
     {{-- Process --}}
-    <section
-        class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative border-t border-white/5"
-        id="processo"
-    >
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-6">
-            <x-process-step number="01" title="Entendimento">Entendimento profundo do negócio</x-process-step>
-            <x-process-step number="02" title="Estratégia">Arquitetura e plano de produto</x-process-step>
-            <x-process-step number="03" title="Construção">Desenvolvimento iterativo</x-process-step>
-            <x-process-step number="04" title="Evolução">Melhoria contínua e escala</x-process-step>
+    <section id="processo" class="border-b border-stone-800">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+            <div class="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                <div>
+                    <x-eyebrow>02 / processo</x-eyebrow>
+
+                    <h2 class="mt-4 max-w-2xl text-4xl font-bold tracking-tighter text-stone-100 sm:text-5xl">
+                        Menos improviso.
+                        <br />
+                        Mais engenharia.
+                    </h2>
+                </div>
+
+                <p class="max-w-sm text-sm leading-7 text-stone-500">
+                    Um processo enxuto para transformar uma ideia em software útil, sustentável e pronto para evoluir.
+                </p>
+            </div>
+
+            <div class="grid border border-stone-800 md:grid-cols-4">
+                <x-process-step number="01" title="Entendimento" class="border-b md:border-b-0 md:border-r">
+                    <x-slot:icon>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <circle cx="11" cy="11" r="6.5" />
+                            <path d="m16 16 4 4" />
+                            <path d="M8.5 11h5" />
+                            <path d="M11 8.5v5" />
+                        </svg>
+                    </x-slot:icon>
+                    Entendemos o problema, usuários, contexto e objetivos antes de escrever código.
+                </x-process-step>
+
+                <x-process-step number="02" title="Estratégia" class="border-b md:border-b-0 md:border-r">
+                    <x-slot:icon>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <circle cx="12" cy="12" r="8" />
+                            <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9z" />
+                        </svg>
+                    </x-slot:icon>
+                    Definimos arquitetura, prioridades e um caminho técnico compatível com o produto.
+                </x-process-step>
+
+                <x-process-step number="03" title="Construção" class="border-b md:border-b-0 md:border-r">
+                    <x-slot:icon>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <path d="m8 8-4 4 4 4" />
+                            <path d="m16 8 4 4-4 4" />
+                            <path d="m14 5-4 14" />
+                        </svg>
+                    </x-slot:icon>
+                    Desenvolvemos em ciclos curtos, mantendo qualidade, clareza e feedback contínuo.
+                </x-process-step>
+
+                <x-process-step number="04" title="Evolução">
+                    <x-slot:icon>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                            <path d="M4 17 9 12l4 3 7-8" />
+                            <path d="M16 7h4v4" />
+                        </svg>
+                    </x-slot:icon>
+                    Medimos, corrigimos e evoluímos o produto conforme novas necessidades aparecem.
+                </x-process-step>
+            </div>
         </div>
     </section>
 
-    {{-- Blog --}}
-    <section
-        class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-white/5"
-        id="blog"
-    >
-        <div class="flex items-center gap-3 mb-6 scroll-reveal visible">
-            <h2 class="font-headline-xl text-headline-xl text-crema-white">Blog</h2>
-            <x-icon name="book" class="text-primary-container text-3xl" />
-        </div>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl scroll-reveal visible">
-            Conteúdo sobre programação, mercado, carreira dev, SaaS e bastidores de quem vive código e café
-            todos os dias.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach ($posts as $post)
-                <x-post-card :post="$post" />
-            @endforeach
+    {{-- Articles --}}
+    <section id="artigos" class="border-b border-stone-800">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+            <div class="grid lg:grid-cols-[280px_1fr] lg:gap-16">
+                <div>
+                    <x-eyebrow>03 / caderno técnico</x-eyebrow>
+
+                    <h2 class="mt-5 text-3xl font-bold tracking-tight text-stone-100">Ideias que sobrevivem ao hype.</h2>
+
+                    <p class="mt-5 text-sm leading-7 text-stone-500">
+                        Engenharia, produto e tecnologia sem transformar cada novidade em uma solução procurando um
+                        problema.
+                    </p>
+
+                    <a
+                        href="{{ route('blog.index') }}"
+                        class="line-hover mt-8 inline-block font-mono text-[10px] uppercase tracking-[.15em] text-stone-300"
+                    >
+                        Ver todos os artigos →
+                    </a>
+                </div>
+
+                <div class="mt-12 border-b border-stone-800 lg:mt-0">
+                    @foreach ($posts as $post)
+                        <x-post-row :post="$post" />
+                    @endforeach
+                </div>
+            </div>
         </div>
     </section>
 
     {{-- Contact --}}
-    <section
-        class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-t border-white/5"
-        id="contato"
-    >
-        <div
-            class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16"
-        >
-            <div class="scroll-reveal visible">
-                <h2 class="font-headline-xl text-headline-xl text-crema-white mb-6">Pronto para construir?</h2>
-                <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 leading-relaxed">
-                    Conte um pouco sobre sua ideia ou desafio. Respondemos rápido e com objetividade.
-                </p>
+    <section id="contato">
+        <div class="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-32">
+            <div class="grid gap-16 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
+                <div>
+                    <x-eyebrow>04 / contato</x-eyebrow>
 
-                <div class="flex flex-col gap-5">
-                    <x-contact-link
-                        :href="'mailto:'.config('site.email')"
-                        :label="config('site.email_label')"
-                        aria-label="Email da coffee.dev"
+                    <h2
+                        class="mt-6 max-w-xl text-5xl font-extrabold leading-none tracking-tighter text-stone-100 sm:text-6xl"
                     >
-                        <x-slot:icon>
-                            <x-icon-badge>
-                                <x-icon name="mail" class="text-primary-container text-sm" />
-                            </x-icon-badge>
-                        </x-slot:icon>
-                    </x-contact-link>
+                        Tem um problema que precisa virar software?
+                    </h2>
 
-                    <x-contact-link
-                        :href="config('site.social.instagram.url')"
-                        :label="config('site.social.instagram.label')"
-                        aria-label="Instagram da coffee.dev"
-                        external
-                    >
-                        <x-slot:icon>
-                            <x-icon-badge class="text-primary-container">
-                                <x-icons.instagram />
-                            </x-icon-badge>
-                        </x-slot:icon>
-                    </x-contact-link>
+                    <p class="mt-7 max-w-lg text-base leading-8 text-stone-500">
+                        Conte um pouco sobre o que você está construindo. A primeira conversa serve para entender o
+                        contexto, não para empurrar uma solução pronta.
+                    </p>
 
-                    <x-contact-link
-                        :href="config('site.social.linkedin.url')"
-                        :label="config('site.social.linkedin.label')"
-                        aria-label="LinkedIn da coffee.dev"
-                        external
-                    >
-                        <x-slot:icon>
-                            <x-icon-badge class="text-primary-container">
-                                <x-icons.linkedin />
-                            </x-icon-badge>
-                        </x-slot:icon>
-                    </x-contact-link>
+                    <div class="mt-12 border-t border-stone-800 pt-7">
+                        <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">contato direto</div>
 
-                    <x-contact-link
-                        :href="config('site.social.github.url')"
-                        :label="config('site.social.github.label')"
-                        aria-label="GitHub da coffee.dev"
-                        external
-                    >
-                        <x-slot:icon>
-                            <x-icon-badge class="text-primary-container">
-                                <x-icons.github />
-                            </x-icon-badge>
-                        </x-slot:icon>
-                    </x-contact-link>
+                        <a
+                            href="mailto:{{ config('site.email') }}"
+                            class="line-hover mt-3 inline-block text-lg text-amber-100"
+                        >
+                            {{ config('site.email_label') }}
+                        </a>
+
+                        <div class="mt-8">
+                            <x-contact-link :href="config('site.whatsapp')" channel="WhatsApp" label="Falar com especialista" external />
+                            <x-contact-link
+                                :href="config('site.social.instagram.url')"
+                                channel="Instagram"
+                                :label="config('site.social.instagram.label')"
+                                external
+                            />
+                            <x-contact-link
+                                :href="config('site.social.linkedin.url')"
+                                channel="LinkedIn"
+                                :label="config('site.social.linkedin.label')"
+                                external
+                            />
+                            <x-contact-link
+                                :href="config('site.social.github.url')"
+                                channel="GitHub"
+                                :label="config('site.social.github.label')"
+                                external
+                            />
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            {{--
-                The form is presentational, exactly as in the prototype: no action,
-                no field names and a type="button" submit. Wiring it up needs a
-                recipient, validation and spam handling — deliberately out of scope.
-            --}}
-            <div class="scroll-reveal visible" style="transition-delay: 100ms">
-                <form class="glass-panel p-8 rounded-xl flex flex-col gap-6">
-                    <div>
-                        <x-contact-field type="text" placeholder="Seu nome" aria-label="Seu nome" />
+                {{--
+                    The form is presentational: no action, no field names and a
+                    type="button" submit. Wiring it up needs a recipient, validation
+                    and spam handling — deliberately out of scope.
+                --}}
+                <form class="border border-stone-800 bg-coffee-900">
+                    <div class="flex items-center justify-between border-b border-stone-800 px-6 py-4">
+                        <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">novo_projeto.form</span>
+                        <span class="font-mono text-[9px] text-stone-700">[04]</span>
                     </div>
-                    <div>
-                        <x-contact-field type="email" placeholder="Seu e-mail" aria-label="Seu e-mail" />
-                    </div>
-                    <div>
+
+                    <div class="space-y-6 p-6 sm:p-8">
+                        <x-contact-field id="nome" label="Seu nome" placeholder="Como podemos chamar você?" />
+
+                        <x-contact-field id="email" label="E-mail" type="email" placeholder="voce@empresa.com" />
+
                         <x-contact-field
+                            id="projeto"
+                            label="Sobre o projeto"
                             textarea
-                            rows="4"
-                            class="resize-none"
-                            placeholder="Conte um pouco sobre o projeto"
-                            aria-label="Conte um pouco sobre o projeto"
+                            rows="6"
+                            placeholder="O que você está construindo? Qual problema precisa resolver?"
                         />
+
+                        <button
+                            type="button"
+                            class="submit-button flex h-12 w-full items-center justify-between bg-amber-100 px-5 font-mono text-[10px] font-semibold uppercase tracking-[.14em] text-coffee-950"
+                        >
+                            <span>Enviar briefing</span>
+                            <span aria-hidden="true">→</span>
+                        </button>
+
+                        <p class="font-mono text-[9px] leading-5 text-stone-700">
+                            Ao enviar, você inicia uma conversa. Sem spam. Sem pitch automático.
+                        </p>
                     </div>
-                    <x-btn-primary class="py-4 flex items-center justify-center gap-2 mt-2">
-                        <x-icon name="send" class="text-lg" />
-                        Enviar mensagem
-                    </x-btn-primary>
                 </form>
             </div>
         </div>

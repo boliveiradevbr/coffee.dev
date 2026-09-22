@@ -1,8 +1,23 @@
+{{-- One cell of the process grid. The icon slot takes a 24x24 stroke SVG. --}}
 @props(['number', 'title'])
 
-<div>
-    <div class="font-display-lg text-display-lg text-surface-bright font-bold mb-4 opacity-50">{{ $number }}</div>
-    <div class="w-8 h-1 bg-primary-container/50 mb-6"></div>
-    <h4 class="font-code-sm text-code-sm text-crema-white font-bold mb-3 uppercase tracking-wider">{{ $title }}</h4>
-    <p class="font-body-md text-body-md text-on-surface-variant">{{ $slot }}</p>
-</div>
+<article {{ $attributes->class('process-item border-stone-800 p-7') }}>
+    <div class="flex items-center justify-between">
+        <div
+            class="process-icon flex h-12 w-12 items-center justify-center border border-stone-800 text-stone-500"
+            aria-hidden="true"
+        >
+            {{ $icon }}
+        </div>
+
+        <span class="process-arrow font-mono text-sm text-stone-700" aria-hidden="true">↗</span>
+    </div>
+
+    <div class="mt-10">
+        <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">etapa / {{ $number }}</div>
+
+        <h3 class="mt-3 text-lg font-semibold text-stone-100">{{ $title }}</h3>
+
+        <p class="mt-4 text-sm leading-6 text-stone-500">{{ $slot }}</p>
+    </div>
+</article>
