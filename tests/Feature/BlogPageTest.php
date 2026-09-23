@@ -108,10 +108,25 @@ it('renders the article cover and nav thumbnail placeholders when covers are mis
     expect(view('components.article-nav-card', [
         'post' => $bare,
         'label' => 'Notícia anterior',
-        'arrow' => '↑',
+        'direction' => 'previous',
     ])->render())
         ->toContain('Sem imagem')
         ->not->toContain('<img');
+});
+
+it('right-aligns both nav cards without arrows and keeps next in the right column', function () {
+    $bare = ['slug' => 'x', 'capa' => '', 'titulo' => 'T', 'data' => '1 jan 2026', 'data_iso' => '2026-01-01'];
+
+    $previous = view('components.article-nav-card', ['post' => $bare, 'label' => 'Notícia anterior', 'direction' => 'previous'])->render();
+    $next = view('components.article-nav-card', ['post' => $bare, 'label' => 'Próxima notícia', 'direction' => 'next'])->render();
+
+    foreach ([$previous, $next] as $card) {
+        expect($card)->toContain('flex-row-reverse')->toContain('text-right')
+            ->not->toContain('←')->not->toContain('→')->not->toContain('aria-hidden');
+    }
+
+    expect($previous)->not->toContain('sm:col-start-2');
+    expect($next)->toContain('sm:col-start-2');
 });
 
 it('uses the same row markup on the home teaser and the blog index', function () {

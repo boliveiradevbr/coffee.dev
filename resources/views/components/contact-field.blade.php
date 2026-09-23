@@ -9,7 +9,7 @@
 @endphp
 
 <div>
-    <label for="{{ $id }}" class="mb-2 block font-mono text-[9px] uppercase tracking-[.16em] text-stone-600">
+    <label for="{{ $id }}" class="mb-2 block font-mono text-[11px] uppercase tracking-[.16em] text-stone-600">
         {{ $label }}
     </label>
 

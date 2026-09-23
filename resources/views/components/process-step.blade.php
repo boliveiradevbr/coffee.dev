@@ -14,7 +14,7 @@
     </div>
 
     <div class="mt-10">
-        <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-700">etapa / {{ $number }}</div>
+        <div class="font-mono text-[11px] uppercase tracking-[.18em] text-stone-700">etapa / {{ $number }}</div>
 
         <h3 class="mt-3 text-lg font-semibold text-stone-100">{{ $title }}</h3>
 

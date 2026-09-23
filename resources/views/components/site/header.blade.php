@@ -28,16 +28,16 @@
             />
 
             <div>
-                <div class="text-[15px] font-bold tracking-tight text-stone-100">
+                <div class="text-xl leading-tight font-bold tracking-tight text-stone-100">
                     coffee<span class="text-amber-200">.</span>dev
                 </div>
 
                 @if ($badge)
-                    <div class="site-badge font-mono text-[9px] uppercase tracking-[.2em] text-amber-200">
+                    <div class="site-badge font-mono text-[11px] uppercase tracking-[.2em] text-amber-200">
                         {{ $badge }}
                     </div>
                 @else
-                    <div class="font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">software foundry</div>
+                    <div class="font-mono text-[11px] uppercase tracking-[.2em] text-amber-200">software foundry</div>
                 @endif
             </div>
         </a>
@@ -46,7 +46,7 @@
             @foreach ($links as $link)
                 <a
                     href="{{ $link['url'] }}"
-                    class="line-hover font-mono text-[11px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
+                    class="line-hover font-mono text-[13px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
                 >
                     {{ $link['label'] }}
                 </a>
@@ -54,7 +54,7 @@
 
             <a
                 href="{{ $ctaUrl }}"
-                class="border border-stone-700 px-4 py-2 font-mono text-[11px] uppercase tracking-[.12em] text-amber-100 transition hover:border-amber-100 hover:bg-amber-100 hover:text-coffee-950"
+                class="border border-stone-700 px-4 py-2 font-mono text-[13px] uppercase tracking-[.12em] text-amber-100 transition hover:border-amber-100 hover:bg-amber-100 hover:text-coffee-950"
             >
                 Vamos conversar
             </a>
@@ -77,7 +77,7 @@
             @foreach ($links as $link)
                 <a
                     href="{{ $link['url'] }}"
-                    class="mobile-menu-link py-3 font-mono text-[11px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
+                    class="mobile-menu-link py-3 font-mono text-[13px] uppercase tracking-[.16em] text-stone-400 hover:text-stone-100"
                 >
                     {{ $link['label'] }}
                 </a>
@@ -85,7 +85,7 @@
 
             <a
                 href="{{ $ctaUrl }}"
-                class="mobile-menu-link mt-2 border border-stone-700 px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[.12em] text-amber-100"
+                class="mobile-menu-link mt-2 border border-stone-700 px-4 py-3 text-center font-mono text-[13px] uppercase tracking-[.12em] text-amber-100"
             >
                 Vamos conversar
             </a>
