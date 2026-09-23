@@ -5,7 +5,7 @@
         <div class="service-index font-mono text-xs text-stone-600">{{ $number }}</div>
 
         <div>
-            <div class="mb-3 font-mono text-[9px] uppercase tracking-[.2em] text-stone-600">{{ $tags }}</div>
+            <div class="mb-3 font-mono text-[11px] uppercase tracking-[.2em] text-stone-600">{{ $tags }}</div>
 
             <h3 class="text-2xl font-bold tracking-tight text-stone-100">{{ $title }}</h3>
 

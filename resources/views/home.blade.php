@@ -23,55 +23,38 @@
                 </defs>
 
                 <g class="smoke-cloud smoke-cloud-1" filter="url(#smokeBlur)">
-                    <path
-                        d="M420 690 C350 620 470 570 400 500 C330 430 470 380 410 310 C350 240 470 180 420 70"
-                        fill="none"
-                        stroke="url(#smokeGradient)"
-                        stroke-width="115"
-                        stroke-linecap="round"
-                    />
+                    <path d="M420 690 C350 620 470 570 400 500 C330 430 470 380 410 310 C350 240 470 180 420 70"
+                        fill="none" stroke="url(#smokeGradient)" stroke-width="115" stroke-linecap="round" />
                 </g>
 
                 <g class="smoke-cloud smoke-cloud-2" filter="url(#smokeBlurSoft)">
-                    <path
-                        d="M500 700 C590 620 470 570 540 490 C610 410 480 350 550 270 C620 190 520 120 580 20"
-                        fill="none"
-                        stroke="url(#smokeGradient)"
-                        stroke-width="90"
-                        stroke-linecap="round"
-                    />
+                    <path d="M500 700 C590 620 470 570 540 490 C610 410 480 350 550 270 C620 190 520 120 580 20"
+                        fill="none" stroke="url(#smokeGradient)" stroke-width="90" stroke-linecap="round" />
                 </g>
 
                 <g class="smoke-cloud smoke-cloud-3" filter="url(#smokeBlur)">
-                    <path
-                        d="M330 700 C250 630 350 570 280 500 C210 430 330 350 270 280 C220 220 290 140 250 60"
-                        fill="none"
-                        stroke="url(#smokeGradient)"
-                        stroke-width="75"
-                        stroke-linecap="round"
-                    />
+                    <path d="M330 700 C250 630 350 570 280 500 C210 430 330 350 270 280 C220 220 290 140 250 60"
+                        fill="none" stroke="url(#smokeGradient)" stroke-width="75" stroke-linecap="round" />
                 </g>
             </svg>
 
             <div class="coffee-smoke-vignette"></div>
         </div>
 
-        <div
-            class="pointer-events-none absolute left-1/2 top-0 h-full w-px bg-linear-to-b from-transparent via-stone-800/40 to-transparent"
-            aria-hidden="true"
-        ></div>
+        <div class="pointer-events-none absolute left-1/2 top-0 h-full w-px bg-linear-to-b from-transparent via-stone-800/40 to-transparent"
+            aria-hidden="true"></div>
 
         <div class="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:py-40">
             <div class="grid lg:grid-cols-[1fr_280px] lg:gap-16">
                 <div>
-                    <div class="mb-8 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[.22em] text-stone-500">
+                    <div
+                        class="mb-8 flex items-center gap-3 font-mono text-[12px] uppercase tracking-[.22em] text-stone-500">
                         <span class="coffee-cursor h-1.5 w-1.5 bg-amber-200"></span>
                         engenharia de software independente
                     </div>
 
                     <h1
-                        class="max-w-5xl text-5xl font-extrabold leading-[.98] tracking-[-0.055em] text-stone-100 sm:text-7xl lg:text-[88px]"
-                    >
+                        class="max-w-5xl text-5xl font-extrabold leading-[.98] tracking-[-0.055em] text-stone-100 sm:text-7xl lg:text-[88px]">
                         Software feito com
                         <span class="text-amber-100">código limpo</span>
                         e café forte.
@@ -83,7 +66,7 @@
                             experiência e arquitetura sustentável não são detalhes.
                         </p>
 
-                        <div class="border-l border-stone-800 pl-5 font-mono text-[10px] leading-6 text-stone-600">
+                        <div class="border-l border-stone-800 pl-5 font-mono text-[12px] leading-6 text-stone-600">
                             <div>STACK / PHP · LARAVEL</div>
                             <div>FRONT / VUE · REACT</div>
                             <div>DATA / SQL · REDIS</div>
@@ -97,10 +80,8 @@
                             <span class="ml-4" aria-hidden="true">↗</span>
                         </x-btn-primary>
 
-                        <a
-                            href="#servicos"
-                            class="inline-flex h-12 items-center justify-center border border-stone-700 px-6 font-mono text-xs uppercase tracking-[.12em] text-stone-300 transition hover:border-stone-500 hover:text-white"
-                        >
+                        <a href="#servicos"
+                            class="inline-flex h-12 items-center justify-center border border-stone-700 px-6 font-mono text-xs uppercase tracking-[.12em] text-stone-300 transition hover:border-stone-500 hover:text-white">
                             Explorar capacidades
                         </a>
                     </div>
@@ -109,13 +90,13 @@
                 <div class="mt-16 hidden lg:block" aria-hidden="true">
                     <div class="border border-stone-800 bg-coffee-900/80 backdrop-blur-sm">
                         <div class="flex items-center justify-between border-b border-stone-800 px-4 py-3">
-                            <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">
+                            <span class="font-mono text-[11px] uppercase tracking-[.18em] text-stone-600">
                                 /coffee.config
                             </span>
-                            <span class="font-mono text-[9px] text-stone-700">001</span>
+                            <span class="font-mono text-[11px] text-stone-700">001</span>
                         </div>
 
-                        <div class="space-y-4 p-5 font-mono text-[10px] leading-5">
+                        <div class="space-y-4 p-5 font-mono text-[12px] leading-5">
                             <div>
                                 <span class="text-stone-600">const</span>
                                 <span class="text-stone-300"> stack</span>
@@ -141,7 +122,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 font-mono text-[9px] leading-5 text-stone-700">
+                    <div class="mt-4 font-mono text-[11px] leading-5 text-stone-700">
                         BUILD WITH INTENTION.<br />
                         SHIP WITH CONFIDENCE.
                     </div>
@@ -165,22 +146,14 @@
                 </div>
 
                 <div class="lg:pl-12">
-                    <x-service-row
-                        number="01"
-                        tags="arquitetura · performance · escala"
-                        title="Software sob medida"
-                        class="border-b"
-                    >
+                    <x-service-row number="01" tags="arquitetura · performance · escala" title="Software sob medida"
+                        class="border-b">
                         Sistemas desenhados para a realidade do seu negócio, com arquitetura sustentável, código
                         legível e capacidade para crescer sem transformar cada mudança em uma operação de risco.
                     </x-service-row>
 
-                    <x-service-row
-                        number="02"
-                        tags="produto · MVP · crescimento"
-                        title="SaaS & Plataformas"
-                        class="border-b"
-                    >
+                    <x-service-row number="02" tags="produto · MVP · crescimento" title="SaaS & Plataformas"
+                        class="border-b">
                         Do primeiro MVP à operação em escala. Modelamos produto, experiência e infraestrutura para que
                         decisões técnicas acompanhem a evolução do negócio.
                     </x-service-row>
@@ -216,7 +189,8 @@
             <div class="grid border border-stone-800 md:grid-cols-4">
                 <x-process-step number="01" title="Entendimento" class="border-b md:border-b-0 md:border-r">
                     <x-slot:icon>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-5 w-5">
                             <circle cx="11" cy="11" r="6.5" />
                             <path d="m16 16 4 4" />
                             <path d="M8.5 11h5" />
@@ -228,7 +202,8 @@
 
                 <x-process-step number="02" title="Estratégia" class="border-b md:border-b-0 md:border-r">
                     <x-slot:icon>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-5 w-5">
                             <circle cx="12" cy="12" r="8" />
                             <path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9z" />
                         </svg>
@@ -238,7 +213,8 @@
 
                 <x-process-step number="03" title="Construção" class="border-b md:border-b-0 md:border-r">
                     <x-slot:icon>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-5 w-5">
                             <path d="m8 8-4 4 4 4" />
                             <path d="m16 8 4 4-4 4" />
                             <path d="m14 5-4 14" />
@@ -249,7 +225,8 @@
 
                 <x-process-step number="04" title="Evolução">
                     <x-slot:icon>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                            class="h-5 w-5">
                             <path d="M4 17 9 12l4 3 7-8" />
                             <path d="M16 7h4v4" />
                         </svg>
@@ -274,10 +251,8 @@
                         problema.
                     </p>
 
-                    <a
-                        href="{{ route('blog.index') }}"
-                        class="line-hover mt-8 inline-block font-mono text-[10px] uppercase tracking-[.15em] text-stone-300"
-                    >
+                    <a href="{{ route('blog.index') }}"
+                        class="line-hover mt-8 inline-block font-mono text-[12px] uppercase tracking-[.15em] text-stone-300">
                         Ver todos os artigos →
                     </a>
                 </div>
@@ -299,8 +274,7 @@
                     <x-eyebrow>04 / contato</x-eyebrow>
 
                     <h2
-                        class="mt-6 max-w-xl text-5xl font-extrabold leading-none tracking-tighter text-stone-100 sm:text-6xl"
-                    >
+                        class="mt-6 max-w-xl text-5xl font-extrabold leading-none tracking-tighter text-stone-100 sm:text-6xl">
                         Tem um problema que precisa virar software?
                     </h2>
 
@@ -309,37 +283,11 @@
                         contexto, não para empurrar uma solução pronta.
                     </p>
 
-                    <div class="mt-12 border-t border-stone-800 pt-7">
-                        <div class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">contato direto</div>
-
-                        <a
-                            href="mailto:{{ config('site.email') }}"
-                            class="line-hover mt-3 inline-block text-lg text-amber-100"
-                        >
-                            {{ config('site.email_label') }}
-                        </a>
-
-                        <div class="mt-8">
-                            <x-contact-link :href="config('site.whatsapp')" channel="WhatsApp" label="Falar com especialista" external />
-                            <x-contact-link
-                                :href="config('site.social.instagram.url')"
-                                channel="Instagram"
-                                :label="config('site.social.instagram.label')"
-                                external
-                            />
-                            <x-contact-link
-                                :href="config('site.social.linkedin.url')"
-                                channel="LinkedIn"
-                                :label="config('site.social.linkedin.label')"
-                                external
-                            />
-                            <x-contact-link
-                                :href="config('site.social.github.url')"
-                                channel="GitHub"
-                                :label="config('site.social.github.label')"
-                                external
-                            />
-                        </div>
+                    <div class="mt-12 border-t border-stone-800">
+                        <x-contact-link :href="config('site.whatsapp')" channel="WhatsApp" label="Falar com especialista" external />
+                        <x-contact-link :href="config('site.social.instagram.url')" channel="Instagram" :label="config('site.social.instagram.label')" external />
+                        <x-contact-link :href="config('site.social.linkedin.url')" channel="LinkedIn" :label="config('site.social.linkedin.label')" external />
+                        <x-contact-link :href="config('site.social.github.url')" channel="GitHub" :label="config('site.social.github.label')" external />
                     </div>
                 </div>
 
@@ -350,8 +298,9 @@
                 --}}
                 <form class="border border-stone-800 bg-coffee-900">
                     <div class="flex items-center justify-between border-b border-stone-800 px-6 py-4">
-                        <span class="font-mono text-[9px] uppercase tracking-[.18em] text-stone-600">novo_projeto.form</span>
-                        <span class="font-mono text-[9px] text-stone-700">[04]</span>
+                        <span
+                            class="font-mono text-[11px] uppercase tracking-[.18em] text-stone-600">novo_projeto.form</span>
+                        <span class="font-mono text-[11px] text-stone-700">[04]</span>
                     </div>
 
                     <div class="space-y-6 p-6 sm:p-8">
@@ -359,23 +308,16 @@
 
                         <x-contact-field id="email" label="E-mail" type="email" placeholder="voce@empresa.com" />
 
-                        <x-contact-field
-                            id="projeto"
-                            label="Sobre o projeto"
-                            textarea
-                            rows="6"
-                            placeholder="O que você está construindo? Qual problema precisa resolver?"
-                        />
+                        <x-contact-field id="projeto" label="Sobre o projeto" textarea rows="6"
+                            placeholder="O que você está construindo? Qual problema precisa resolver?" />
 
-                        <button
-                            type="button"
-                            class="submit-button flex h-12 w-full items-center justify-between bg-amber-100 px-5 font-mono text-[10px] font-semibold uppercase tracking-[.14em] text-coffee-950"
-                        >
+                        <button type="button"
+                            class="submit-button flex h-12 w-full items-center justify-between bg-amber-100 px-5 font-mono text-[12px] font-semibold uppercase tracking-[.14em] text-coffee-950">
                             <span>Enviar briefing</span>
                             <span aria-hidden="true">→</span>
                         </button>
 
-                        <p class="font-mono text-[9px] leading-5 text-stone-700">
+                        <p class="font-mono text-[11px] leading-5 text-stone-700">
                             Ao enviar, você inicia uma conversa. Sem spam. Sem pitch automático.
                         </p>
                     </div>
