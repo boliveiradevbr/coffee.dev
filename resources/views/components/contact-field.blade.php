@@ -14,7 +14,7 @@
     </label>
 
     @if ($textarea)
-        <textarea id="{{ $id }}" {{ $attributes->class([$base, 'resize-none p-4 leading-6']) }}></textarea>
+        <textarea id="{{ $id }}" {{ $attributes->class([$base, 'resize-none p-4 leading-6']) }}>{{ $slot }}</textarea>
     @else
         <input id="{{ $id }}" {{ $attributes->class([$base, 'h-12 px-4'])->merge(['type' => 'text']) }} />
     @endif

@@ -44,6 +44,14 @@ body {
     color: var(--color-coffee-950);
 }
 
+.logo-container {
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 9);
+    background-color: var(--color-amber-200);
+    -webkit-mask: url('/images/logo.svg') no-repeat center / contain;
+    mask: url('/images/logo.svg') no-repeat center / contain;
+}
+
 /* ---------------------------------------------------------------------------
    Hero coffee smoke. Each stream runs its own keyframes so the three never read
    as one object moving back and forth.

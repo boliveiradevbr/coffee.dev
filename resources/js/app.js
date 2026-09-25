@@ -41,4 +41,44 @@ function initMobileMenu() {
     });
 }
 
+function initContactForm() {
+    const form = document.querySelector('[data-contact-form]');
+
+    if (!form) {
+        return;
+    }
+
+    const submitButton = form.querySelector('[data-contact-submit]');
+    const submitLabel = form.querySelector('[data-contact-submit-label]');
+    const submitArrow = form.querySelector('[data-contact-submit-arrow]');
+    const submitSpinner = form.querySelector('[data-contact-submit-spinner]');
+    const submitStatus = form.querySelector('[data-contact-submit-status]');
+    let isSubmitting = false;
+
+    if (!submitButton || !submitLabel || !submitArrow || !submitSpinner || !submitStatus) {
+        return;
+    }
+
+    form.addEventListener('submit', (event) => {
+        if (isSubmitting) {
+            event.preventDefault();
+
+            return;
+        }
+
+        if (!form.checkValidity()) {
+            return;
+        }
+
+        isSubmitting = true;
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        submitLabel.textContent = 'Enviando briefing...';
+        submitArrow.classList.add('hidden');
+        submitSpinner.classList.remove('hidden');
+        submitStatus.textContent = 'Enviando briefing...';
+    });
+}
+
 initMobileMenu();
+initContactForm();

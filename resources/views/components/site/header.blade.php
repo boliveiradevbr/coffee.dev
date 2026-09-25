@@ -19,25 +19,19 @@
 <header class="border-b border-stone-800 bg-coffee-950/95 backdrop-blur-md">
     <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="{{ route('home') }}" class="group flex items-center gap-3">
-            <img
-                src="/images/logo-40x40.png"
-                alt="coffee.dev logo"
-                width="36"
-                height="36"
-                class="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
+            <div class="logo-container"></div>
 
             <div>
-                <div class="text-xl leading-tight font-bold tracking-tight text-stone-100">
+                <div class="text-2xl leading-tight tracking-tight text-stone-100">
                     coffee<span class="text-amber-200">.</span>dev
                 </div>
 
                 @if ($badge)
-                    <div class="site-badge font-mono text-[11px] uppercase tracking-[.2em] text-amber-200">
+                    <div class="site-badge font-mono text-[10px] uppercase tracking-[.2em] text-amber-200">
                         {{ $badge }}
                     </div>
                 @else
-                    <div class="font-mono text-[11px] uppercase tracking-[.2em] text-amber-200">software foundry</div>
+                    <div class="font-mono text-[10px] uppercase tracking-[.2em] text-amber-200">software foundry</div>
                 @endif
             </div>
         </a>

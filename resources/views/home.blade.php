@@ -75,14 +75,14 @@
                     </div>
 
                     <div class="mt-12 flex flex-col gap-3 sm:flex-row">
-                        <x-btn-primary href="#contato" class="h-12 justify-center px-6">
-                            Iniciar um projeto
+                        <x-btn-primary href="https://wa.me/5518936191084?text=Olá,+gostaria+de+tirar+meu+projeto+do+papel:" class="h-12 justify-center px-6" external="true">
+                            Quero iniciar um projeto
                             <span class="ml-4" aria-hidden="true">↗</span>
                         </x-btn-primary>
 
                         <a href="#servicos"
                             class="inline-flex h-12 items-center justify-center border border-stone-700 px-6 font-mono text-xs uppercase tracking-[.12em] text-stone-300 transition hover:border-stone-500 hover:text-white">
-                            Explorar capacidades
+                            Explorar serviços
                         </a>
                     </div>
                 </div>
@@ -291,12 +291,8 @@
                     </div>
                 </div>
 
-                {{--
-                    The form is presentational: no action, no field names and a
-                    type="button" submit. Wiring it up needs a recipient, validation
-                    and spam handling — deliberately out of scope.
-                --}}
-                <form class="border border-stone-800 bg-coffee-900">
+                <form action="{{ route('contact.send') }}" method="POST" class="border border-stone-800 bg-coffee-900" data-contact-form>
+                    @csrf
                     <div class="flex items-center justify-between border-b border-stone-800 px-6 py-4">
                         <span
                             class="font-mono text-[11px] uppercase tracking-[.18em] text-stone-600">novo_projeto.form</span>
@@ -304,18 +300,47 @@
                     </div>
 
                     <div class="space-y-6 p-6 sm:p-8">
-                        <x-contact-field id="nome" label="Seu nome" placeholder="Como podemos chamar você?" />
+                        @if (session('contact_status'))
+                            <p role="status" class="border border-emerald-800 bg-emerald-950/30 p-4 font-mono text-xs leading-6 text-emerald-200">
+                                {{ session('contact_status') }}
+                            </p>
+                        @endif
 
-                        <x-contact-field id="email" label="E-mail" type="email" placeholder="voce@empresa.com" />
+                        <div>
+                            <x-contact-field id="name" name="name" label="Seu nome" placeholder="Como podemos chamar você?"
+                                value="{{ old('name') }}" :aria-invalid="$errors->has('name') ? 'true' : 'false'" />
+                            @error('name')
+                                <p class="mt-2 font-mono text-[11px] text-red-300">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                        <x-contact-field id="projeto" label="Sobre o projeto" textarea rows="6"
-                            placeholder="O que você está construindo? Qual problema precisa resolver?" />
+                        <div>
+                            <x-contact-field id="email" name="email" label="E-mail" type="email" placeholder="voce@empresa.com"
+                                value="{{ old('email') }}" :aria-invalid="$errors->has('email') ? 'true' : 'false'" />
+                            @error('email')
+                                <p class="mt-2 font-mono text-[11px] text-red-300">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                        <button type="button"
-                            class="submit-button flex h-12 w-full items-center justify-between bg-amber-100 px-5 font-mono text-[12px] font-semibold uppercase tracking-[.14em] text-coffee-950">
-                            <span>Enviar briefing</span>
-                            <span aria-hidden="true">→</span>
+                        <div>
+                            <x-contact-field id="project" name="project" label="Sobre o projeto" textarea rows="6"
+                                placeholder="O que você está construindo? Qual problema precisa resolver?"
+                                :aria-invalid="$errors->has('project') ? 'true' : 'false'">{{ old('project') }}</x-contact-field>
+                            @error('project')
+                                <p class="mt-2 font-mono text-[11px] text-red-300">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <button type="submit" data-contact-submit
+                            class="submit-button flex h-12 w-full items-center justify-between bg-amber-100 px-5 font-mono text-[12px] font-semibold uppercase tracking-[.14em] text-coffee-950 transition disabled:cursor-wait disabled:bg-stone-500 disabled:text-stone-100">
+                            <span data-contact-submit-label>Enviar briefing</span>
+                            <span class="flex size-4 items-center justify-center" aria-hidden="true">
+                                <span data-contact-submit-arrow>→</span>
+                                <span data-contact-submit-spinner class="hidden size-3.5 border-2 border-coffee-950/25 border-t-coffee-950 motion-safe:animate-spin"></span>
+                            </span>
                         </button>
+
+                        <p class="sr-only" aria-live="polite" data-contact-submit-status></p>
 
                         <p class="font-mono text-[11px] leading-5 text-stone-700">
                             Ao enviar, você inicia uma conversa. Sem spam. Sem pitch automático.
