@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
     public function __invoke(SendContactMessageRequest $request): RedirectResponse
     {
-        Mail::to(config('site.email'))->send(
+        Mail::to(config('mail.to.address'))->send(
             new ContactFormSubmitted(...$request->validated()),
         );
 

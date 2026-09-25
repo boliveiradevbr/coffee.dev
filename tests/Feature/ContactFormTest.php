@@ -19,7 +19,7 @@ it('sends the contact form to the site inbox', function () {
         ->assertSessionHas('contact_status');
 
     Mail::assertSent(ContactFormSubmitted::class, function (ContactFormSubmitted $mail): bool {
-        return $mail->hasTo(config('site.email'))
+        return $mail->hasTo(config('mail.to.address'))
             && $mail->hasReplyTo('ana@example.com', 'Ana Silva')
             && $mail->project === 'Preciso de uma plataforma para organizar pedidos.';
     });
