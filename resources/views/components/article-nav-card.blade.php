@@ -3,7 +3,7 @@
 
 <a
     @class([
-        'article group flex flex-row-reverse items-center gap-5 border border-stone-800 p-5 text-right',
+        'article group flex items-center gap-5 border border-stone-800 p-5',
         'sm:col-start-2' => $direction === 'next',
     ])
     href="{{ route('blog.show', $post['slug']) }}"
